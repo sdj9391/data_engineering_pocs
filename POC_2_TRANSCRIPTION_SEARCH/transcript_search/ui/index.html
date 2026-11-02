@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Training Video Search</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 16px; }
+    form { display: flex; gap: 8px; }
+    input { flex: 1; padding: 10px; font-size: 16px; }
+    button { padding: 10px 18px; font-size: 16px; cursor: pointer; }
+    .summary { background: #eef5ff; padding: 12px; border-radius: 6px; margin: 16px 0; }
+    .result { border-bottom: 1px solid #ddd; padding: 12px 0; }
+    .result h3 { margin: 0 0 4px; }
+    .snippet { color: #444; margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <h1>Training Video Search</h1>
+  <form id="search-form">
+    <input id="query" placeholder="Search training videos..." required minlength="2">
+    <button type="submit">Search</button>
+  </form>
+  <div id="out" aria-live="polite"></div>
+
+  <script>
+    const output = document.getElementById("out");
+    const queryInput = document.getElementById("query");
+
+    function appendSnippet(container, text) {
+      const snippet = document.createElement("div");
+      snippet.className = "snippet";
+      const escaped = document.createElement("span");
+      escaped.textContent = text ?? "";
+      snippet.innerHTML = escaped.innerHTML.replace(/&lt;(\/?)b&gt;/g, "<$1b>");
+      container.append(snippet);
+    }
+
+    document.getElementById("search-form").addEventListener("submit", async event => {
+      event.preventDefault();
+      output.textContent = "Searching...";
+      try {
+        const response = await fetch("/search?q=" + encodeURIComponent(queryInput.value));
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.detail || response.statusText);
+
+        output.replaceChildren();
+        if (data.summary) {
+          const summary = document.createElement("div");
+          summary.className = "summary";
+          summary.textContent = data.summary;
+          output.append(summary);
+        }
+        if (!data.results.length) {
+          const empty = document.createElement("p");
+          empty.textContent = "No results found.";
+          output.append(empty);
+        }
+
+        for (const result of data.results) {
+          const item = document.createElement("div");
+          item.className = "result";
+          const heading = document.createElement("h3");
+          const title = result.title || result.id;
+          let link;
+          try {
+            link = new URL(result.link);
+          } catch {
+            link = null;
+          }
+          if (link && ["http:", "https:"].includes(link.protocol)) {
+            const anchor = document.createElement("a");
+            anchor.href = link.href;
+            anchor.target = "_blank";
+            anchor.rel = "noopener noreferrer";
+            anchor.textContent = title;
+            heading.append(anchor);
+          } else {
+            heading.textContent = title;
+          }
+          item.append(heading);
+          [...(result.answers || []), ...(result.snippets || [])]
+            .slice(0, 2)
+            .forEach(text => appendSnippet(item, text));
+          output.append(item);
+        }
+      } catch (error) {
+        output.textContent = "Error: " + error.message;
+      }
+    });
+  </script>
+</body>
+</html>

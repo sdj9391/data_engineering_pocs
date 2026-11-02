@@ -1,0 +1,1 @@
+"""Transcript search application."""
