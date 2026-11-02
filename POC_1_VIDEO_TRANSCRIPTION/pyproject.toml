@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 # Basic package metadata shown to Python package managers.
 [project]
-name = "video-transcription-poc"
+name = "video-transcription"
 version = "0.1.0"
 description = "Transcribe videos in a training ZIP with local speech recognition"
 requires-python = ">=3.9"
