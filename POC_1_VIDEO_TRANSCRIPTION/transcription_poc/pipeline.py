@@ -8,9 +8,9 @@ import zipfile
 from pathlib import Path, PurePosixPath
 
 from . import config
-from .backends import GoogleBackend, LocalBackend
+from .backends import LocalBackend
 
-# All backends receive the same mono, 16 kHz, 16-bit PCM audio format.
+# Local transcription uses mono, 16 kHz, 16-bit PCM audio.
 SAMPLE_RATE = 16000
 # Chunking limits the amount of audio processed by one recognition request.
 CHUNK_SECONDS = 5 * 60
@@ -49,7 +49,7 @@ def video_entries(archive):
 
 
 def extract_audio(video_path, audio_path):
-    """Use ffmpeg to convert a video into the format expected by the backends."""
+    """Use ffmpeg to convert a video into the format expected by Whisper."""
     subprocess.run(
         [
             "ffmpeg", "-nostdin", "-loglevel", "error", "-y",
@@ -80,17 +80,6 @@ def audio_chunks(audio_path, output_dir, name):
                     chunk.writeframes(source.readframes(count))
                     remaining -= count
             yield chunk_path, start_frame / SAMPLE_RATE, frame_count / SAMPLE_RATE
-
-
-def make_backend():
-    """Create the configured backend behind a common transcribe() interface."""
-    if config.BACKEND == "local":
-        return LocalBackend(config.WHISPER_MODEL, config.LANGUAGE_CODE)
-    if config.BACKEND == "google":
-        if not config.GCS_BUCKET:
-            raise ValueError("Set GCS_BUCKET in transcription_poc/config.py for Google mode")
-        return GoogleBackend(config.GCS_BUCKET, config.LANGUAGE_CODE)
-    raise ValueError("Unknown BACKEND: {!r}".format(config.BACKEND))
 
 
 def write_transcript(base_path, video, segments, **extra):
@@ -159,7 +148,7 @@ def run():
         raise FileNotFoundError("Place the archive at {}".format(config.TRAINING_ZIP))
     with zipfile.ZipFile(config.TRAINING_ZIP) as archive:
         entries = video_entries(archive)
-        backend = make_backend()
+        backend = LocalBackend(config.WHISPER_MODEL, config.LANGUAGE_CODE)
         for entry, relative_path in entries:
             print("Processing {}".format(relative_path))
             output = transcribe_video(archive, entry, relative_path, backend)
