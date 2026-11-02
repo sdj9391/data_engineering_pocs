@@ -7,8 +7,8 @@ import wave
 import zipfile
 from pathlib import Path, PurePosixPath
 
-from . import config
-from .backends import LocalBackend
+from ..backend.local_whisper import LocalWhisperBackend
+from ..config import settings
 
 # Local transcription uses mono, 16 kHz, 16-bit PCM audio.
 SAMPLE_RATE = 16000
@@ -44,7 +44,7 @@ def video_entries(archive):
         names.add(folder)
         entries.append((entry, path))
     if not entries:
-        raise ValueError("No supported videos found in {}".format(config.TRAINING_ZIP))
+        raise ValueError("No supported videos found in {}".format(settings.TRAINING_ZIP))
     return entries
 
 
@@ -99,7 +99,7 @@ def write_transcript(base_path, video, segments, **extra):
 def transcribe_video(archive, entry, relative_path, backend):
     """Process one archived video and return its output directory."""
     name = relative_path.stem
-    output_dir = config.OUTPUT_DIR / relative_path.with_suffix("")
+    output_dir = settings.OUTPUT_DIR / relative_path.with_suffix("")
     output_dir.mkdir(parents=True, exist_ok=True)
     audio_path = output_dir / (name + ".wav")
 
@@ -144,11 +144,13 @@ def transcribe_video(archive, entry, relative_path, backend):
 
 def run():
     """Run the pipeline for every supported video in the configured ZIP archive."""
-    if not config.TRAINING_ZIP.is_file():
-        raise FileNotFoundError("Place the archive at {}".format(config.TRAINING_ZIP))
-    with zipfile.ZipFile(config.TRAINING_ZIP) as archive:
+    if not settings.TRAINING_ZIP.is_file():
+        raise FileNotFoundError("Place the archive at {}".format(settings.TRAINING_ZIP))
+    with zipfile.ZipFile(settings.TRAINING_ZIP) as archive:
         entries = video_entries(archive)
-        backend = LocalBackend(config.WHISPER_MODEL, config.LANGUAGE_CODE)
+        backend = LocalWhisperBackend(
+            settings.WHISPER_MODEL, settings.LANGUAGE_CODE
+        )
         for entry, relative_path in entries:
             print("Processing {}".format(relative_path))
             output = transcribe_video(archive, entry, relative_path, backend)

@@ -1,4 +1,4 @@
-class LocalBackend:
+class LocalWhisperBackend:
     """Run speech-to-text locally with the faster-whisper package."""
 
     def __init__(self, model_name, language_code):

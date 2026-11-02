@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 # Basic package metadata shown to Python package managers.
 [project]
-name = "training-transcription-poc"
+name = "video-transcription-poc"
 version = "0.1.0"
 description = "Transcribe videos in a training ZIP with local speech recognition"
 requires-python = ">=3.9"
@@ -13,4 +13,4 @@ dependencies = ["faster-whisper>=1.0,<2"]
 
 # Tell setuptools which Python package directories to include.
 [tool.setuptools.packages.find]
-include = ["transcription_poc*"]
+include = ["video_transcription*"]
