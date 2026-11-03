@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "store-assistant"
+version = "0.1.0"
+description = "A Firestore-backed store assistant using Google ADK and Vertex AI"
+requires-python = ">=3.12"
+dependencies = [
+    "google-adk",
+    "google-cloud-firestore",
+    "google-genai",
+    "fastapi",
+    "pydantic",
+    "uvicorn[standard]",
+    "python-dotenv",
+    "python-multipart",
+]
+
+[tool.setuptools.packages.find]
+include = ["store_assistant*"]
+
+[tool.setuptools.package-data]
+store_assistant = ["ui/*.html"]

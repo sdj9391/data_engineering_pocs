@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Store Assistant</title>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:720px;margin:24px auto;padding:0 12px}
+  #log{border:1px solid #ddd;border-radius:8px;height:420px;overflow:auto;padding:12px;background:#fafafa}
+  .m{margin:8px 0;padding:8px 12px;border-radius:10px;max-width:85%;white-space:pre-wrap}
+  .u{background:#dbeafe;margin-left:auto}.b{background:#fff;border:1px solid #e5e5e5}
+  form{display:flex;gap:8px;margin-top:10px}input[type=text]{flex:1;padding:10px;font-size:16px}
+  button,select{padding:10px;font-size:15px}
+</style></head><body>
+<h2>Electronics Store Assistant</h2>
+<label>Demo user:
+  <select id="user">
+    <option value="U001">Aisha Khan (Gold)</option><option value="U002">Omar Ali (Silver)</option>
+    <option value="U003">Lina Haddad (Platinum)</option><option value="U004">Sam Carter (New)</option>
+  </select></label>
+<div id="log"></div>
+<form id="f"><input id="t" type="text" placeholder="Ask about products, promotions or orders..." required><button>Send</button></form>
+<script>
+let sid = null;
+const log = document.getElementById("log"), user = document.getElementById("user");
+const f = document.getElementById("f"), t = document.getElementById("t");
+user.onchange = () => { sid = null; log.innerHTML = ""; };   // new user = new session
+const add = (cls, txt) => { const d = document.createElement("div"); d.className = "m " + cls; d.textContent = txt; log.appendChild(d); log.scrollTop = log.scrollHeight; return d; };
+f.onsubmit = async e => {
+  e.preventDefault(); const text = t.value; t.value = ""; add("u", text);
+  const wait = add("b", "...");
+  try {
+    const r = await fetch("/chat", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({message: text, user_id: user.value, session_id: sid})});
+    if (!r.ok) throw new Error(r.status);
+    const data = await r.json(); sid = data.session_id; wait.textContent = data.reply || "(no reply)";
+  } catch (err) { wait.textContent = "Error: " + err.message; }
+};
+</script></body></html>

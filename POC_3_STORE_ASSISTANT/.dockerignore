@@ -1,0 +1,15 @@
+.env
+.venv
+.venv-*
+**/.env
+**/.venv
+**/.venv-*
+**/.adk
+**/__pycache__
+**/*.pyc
+**/*.egg-info
+build
+dist
+data
+scripts
+.git
