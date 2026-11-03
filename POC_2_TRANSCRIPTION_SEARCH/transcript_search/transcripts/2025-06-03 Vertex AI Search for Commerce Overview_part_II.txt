@@ -1,0 +1,323 @@
+Okay, so first example, first demo, this is an actual retailer, it's a production using
+our system.
+It's a French retailer, and their catalog is all in print.
+Let's see how we can actually search in different languages and see how it works.
+So let me search for, for example, whoops, there.
+For a watch, I'm searching in Spanish because I'm in Spanish, I'm in Spanish.
+And let's see if we can find watches in this way.
+Yes, see, we got all the watches that the retailer has from the French catalog, and there was
+no issue with language.
+Let's search for something else, for example, an air fryer, again in Spanish, and let's see
+how it works.
+See, we got it just right, and the same thing we can do for English.
+For example, air fryer, then we should get the same results, see, here.
+So again, we can search in whatever language and get results from the catalog, which is in
+French.
+This can be enabled or disabled if the retailer doesn't want to have any searches in other
+languages, but we think it's pretty useful if we allow our customers to do this, right?
+More things, let's talk about that guidance search when we run some general queries.
+Right back and beyond is a U.S. retailer for home furnishings and, you know, articles, products.
+So let's run a very general question, like for example, SOFA, okay?
+Here the system understands that there is a very general question, it shows us tons
+of SOFA.
+See that there are, like, over 800, 6,000, 600 SOFAs, so it's going to help us narrow down
+that query to find our perfect SOFA for us.
+So first it will ask us which color are you looking for, let's see for example, beige.
+Okay, then it will ask us, okay, what material would you prefer, let's say cotton, which
+is lighter for summer.
+Now, as you can see, we've narrowed it down from 8,000 results to only 17.
+So here it understands that, you know, now this is manageable.
+The customer might actually go through the 17 results and start clicking on them to find
+out more details about them, and finally purchase one of them.
+So here's where it will stop the conversation, it understood that, okay, now we've actually
+narrowed down the query that the customer was searching for, and they could start
+looking at the products.
+Whereas, you know, when we showed the 8,000 SOFAs, the customer, there's no way that they
+were going to go through each of those products to take a look at them, right?
+So that's how conversational product filtering works.
+If it detects that the query is very broad, it will have us narrow down with a few questions.
+And again, it will just ask the right questions.
+It will not go into a lengthy conversation with us, it will just get the right questions
+to make sure that we narrow down that query and get the results that we want,
+right?
+So here's demo.
+We talked about conversational commerce, that's like the next step, right?
+We'll be rolling out pretty soon.
+In the previous ones, it was actually retailers.
+In this case, it's a demo store because, again, we're about to roll it out, but we
+wanted to have a demo store to show you how this works.
+So what we have here is our symbol superstore, which sells items for sports and outdoors.
+And we base the information on our Google merchandise store with certain products that
+are related to sports and so on.
+So let's start the conversation asking about what we're searching for.
+So let's say I want to run a marathon, run a marathon, what do I need, okay?
+What conversational commerce will do is actually take that query and understand
+it.
+Now that we're asking for advice of what products from the catalog I might need
+to run a marathon.
+And first of all, it will give you a summary of an answer with suggestions
+on the type of apparel that I will need for running, like running shoes, energy gels,
+blah, blah, blah, okay?
+It will ask a follow-up question in case we want to start narrowing down our query
+as well.
+And right away, it will show us products related to that query that we just did,
+right?
+Because we are very focused on products, right?
+We want our customers to see the products.
+We don't want to dive into lengthy conversations with our customers and spend
+half an hour talking about things that are not related to the e-commerce or to
+our catalog's products, right?
+We want to make sure that they get the information that they want.
+Okay, well, I can continue the conversation, but let's take a look
+up at how it actually adapts depending on the query.
+Let's say directly that, you know, I have a very clear idea.
+I just want running shoes.
+So this is much more specific, right?
+I'm not asking for advice on different items.
+I actually want running shoes.
+So I understand this, and instead of, you know,
+I need to a conversation and asking me about the type of items and so on actually shows me the products right away
+It says okay running shoes here. You have running shoes and this is really great
+Right and here. I think it's in the conversation. I can ask questions about, you know, one of these items
+You know all in a conversational way, which is really user-friendly
+But if not, I could just start clicking on the items and you know purchase them if I want
+So it's really good. It's how we see how it adapts depending on the query
+To getting into more conversational type of, you know, interaction with our customers to more direct
+Here are the products that you're looking for type of search or results, right?
+There are other things that we can do for example. I can upload an image
+And ask it to find any products in the catalog
+That match those in the image. Okay see here
+It's like there's some hats and it showed the hats that it has in the catalog and also I can also ask things like
+You know not directly product directly requirements like what is your return policy?
+And this will be based on our Google merchants
+Conditions the store conditions. Okay, but here it gives me the information that's related to purchase
+You know commissions like seven ninety days
+For refund that type of thing, right? So here you see a bit of a dental of how conversational
+Commerce works and also how did that it adapts to what my customer is looking for it doesn't always
+Start a conversation. It really adapts to to to the query, right?
+Okay, so let's go back to those flies. We just have a few more just
+Finish with conversational commerce and then I'll get back to the questions. See if there are any units
+Okay, conversational commerce. This is again. It's coming in. I think it's July
+it will be first available in
+English French
+Spanish and Brazilian Portuguese. Those will be the first language that will be available in July
+And then in Q3, we will have a second wave of additional languages coming out as well
+Um
+Conversational commerce is very ROI focus, right? We want to make sure that we again
+We don't dive into a lengthy conversation with a customer that we don't add
+You know additional steps from you know what my customer is creating. They're searching for the actual purchase
+We want to go very straight to the point and make sure that the customer gets what they want
+They're in our key e-commerce. They're searching for something. We want to make sure that they find it, right?
+It can well it actually does understand a context. You know if I continue to ask questions about those running shoes
+Like okay, what sizes do you have them in available? It will understand that I'm referring to running shoes
+I don't have to specify that again. So understand the history of the conversation in the context, right?
+It will always be product first as I mentioned
+It will give an answer I'll suggest is to you know apparel for running
+They will right away show us products because we want the customer to right away start seeing products from our catalog, right?
+It is specifically built for commerce. So it is not using a general-purpose LLM in the background
+It is using one that is targeted and trained specifically for commerce. This has many advantages
+First it understands commerce second
+It doesn't go into conversations about things that should not be you know taking place in our e-commerce
+Those conversations are only about our products in our catalog or our store
+And then also that we reduce the latency, right? We want to get those results right away. We have to you know
+Relevance ranking a lot of combinations a lot of AI going on plus the conversational part
+We want to make sure that all of that is shown right away to the customer
+They don't have to wait to get an answer and to start seeing those products as well, right?
+And AI safety and responsibility we have different layers three layers specifically one is the one that we would have in you know
+There's other services other solutions like Dem and I our responsible AI
+We have series of filters to make sure that you know
+Our customers are not doing anything wrong with the conversation in party commerce
+We add another layer of filters which are specific for commerce so that we know, you know
+Certain things that could be asked
+To Gemini or to other LLMs. I should not be asked in this case to our commerce conversation
+And then a third layer which the retailer can customize where they can add, you know
+Things that they want to block that they don't want customers to be able to ask or simply don't want to give an answer
+To them right they can add a third layer of things that they would like to block from those conversations
+Okay, so and how this is actually works so for example
+If you are, you know send a query to the retail search or a commerce search API
+What answer do you
+get now that you have conversational commerce. Well, first of all, you will get an intense
+classifier, which tells you what type of query the customer just did, right? So that could
+be if we were very specific, like, you know, running shoes, that would correspond to intense
+that simple product search. And that way we know that we, you know, we don't want
+to dive into a conversation. We want to show the price right away. If that's customers
+asking for information about those products, no details or doing a comparison, then those
+would be the intents that you see here. If the customer is actually asking for something
+that doesn't have anything to do with any of our products or store, then that would be under
+relevant intents. And of course, as we mentioned, we have different filters to block certain
+queries. So we would also have the intents of block queries, if that takes place, right?
+There are many more intents, actually. And there you have a link to the actual full
+list of intents. Okay, so we have our intents. We know what type of query the customer just
+ran. How does that work with conversational commerce? What else do we get? Well, if it
+detects that it is, you know, an incident that could improve with conversation, then
+it will send us first, in first place, the answer, which is, you know, what you see
+here. A quick answer, a summarized answer of the advice that is giving us on possible
+products that match what we're looking for in this case, if we're running. It will also
+give us a refinement question. So it might ask us, you know, okay, are you running in
+warm weather or in cold weather? So we can narrow down the query as well. So that would
+be a follow-up question. And also it will give us a rephrase or suggested query. So
+from what the customer asked us, which is, you know, very general, I'm very
+asking for advice, it would actually give us suggested queries that we can base our
+search on and show the products that you're seeing here, right? So here it
+probably returns some suggested queries like, you know, running t-shirts, running
+shoes, that type of thing, right? So we can start showing products right away
+based on that initial query. Okay, so as mentioned, this is not yet out, but
+it will be soon. If you are interested in conversational commerce and
+just to figure out, first of all, just know that you will have to be already
+unmorted on conversational, registered for commerce, that's obviously a must,
+right? And if you are interested in requesting access to this, I have linked
+the form here so that you can, you know, explain what your business use case
+is, et cetera. And then the team can take that into account, okay? As you
+can imagine at this phase, you know, allow this thing is quite limited,
+let's say, or restricted, but that doesn't mean that we're not moving
+access. It just means that we're checking on a face-by-face basis, right?
+Okay. So what else is coming out pretty soon? Well, we already mentioned that
+apart from being able to upload an image and find the products that are in
+that image, we can also ask questions about it, like, okay, here's an
+image. Can you tell me what shoes match the dress in that image? Or here's
+an image of my bedroom. It's very empty. Can you tell me what products I could
+ask so that it looks a bit cozier, right? That type of more conversational type
+of questions over those images will be coming out in late Q3 as well. Then
+the queries that we just saw, like, which are not related to products, but
+to our store, for example, like, what is your, what is your, how do you say,
+returns policy, right? What are your store hours, opening hours, that
+type of thing? We're also adding a lot more analytics to the console because,
+you know, we want you to see what conversations are working for the best
+how, you know, our customers are interacting with our e-commerce for
+conversation and also more customizations. Like, if you want to
+adapt the brand or the tone of that conversation to your own retailer
+brand, then that will also be an option. More things. It's actually
+something I think someone asked about. If there are questions like, what are
+your, you know, what, how do I cancel my order? Maybe we want those to be
+taken by a different agent, not our conversational commerce agents, because
+it's not really a product question, right? And in that case, we can orchestrate
+things so that those types of queries go into other agents that we have
+built specifically for each of those purposes, right? We will also have
+possibility of becoming late Q3 and multi-agent support. Okay, so I'm going to
+stop for a question. Well, actually, I want to show you a few resources just in
+case anyone has to leave soon. And then I'll go into the questions, okay? We
+will have our second session on June 18th. We'll dive into more detail, to
+more, you know, kind of technical side of the solution. But if any time, if
+you want to continue to learn, here are at least some links which I think
+will be very useful for you.
+The first one is a course that's in partner-class use spools.
+This course is pretty good because it covers everything
+related to Vertex Azure Search for Covers,
+but also has some labs so that you can actually get hands-on
+to working with a solution and how to implement it, right?
+The next link is our, oopsie,
+our quarterly roadmap session.
+As mentioned, the last one was in May, so it's quite recent.
+If you're interested in knowing a bit more detail
+improvements we've done to our relevance engines, ranking,
+what's coming up in the next, in the next quarter,
+in the next month, I suggest that you take a look at the session
+because it's really, really quite complete, right?
+Supporting the languages for, say, I search for commerce.
+Here we have a full list of all of the languages supported.
+And remember that specifically for conversational commerce,
+only for conversational commerce,
+the language that will be coming out in July
+are English, French, Spanish, and Brazilian Portuguese.
+Okay, I leave a couple of links to that documentation,
+both for search and for conversational commerce as well.
+And if you want to request information
+or access to our conversational commerce private preview,
+here's the request form that you can provide for the next.
+More things, if you as a partner already have experience
+working with retail customers
+and you want to make sure that the world knows,
+we have a retail and wholesale partner expertise.
+But if you are actually not aware of this,
+it doesn't take a lot of effort to request this bash,
+as long as you already have that experience
+working with retail.
+Basically, it's kind of like a bash that,
+like a staff that tells, okay,
+this partner is an expert in retail at Google Cloud.
+So this really gives confidence to any new customers
+that might want to work with you
+because they know that you have already worked
+in the retail industry with retail customers
+and that the outcome was successful, right?
+The requirements to request this expertise
+is to have one or two customer evidences.
+So basically, you'll prove that you actually have worked
+in retail projects with customers
+and that they were successful
+and to have two employees
+with a professional certification in your team.
+So we want to make sure that you,
+you know, not only successful with retail,
+but specifically working with our services
+in Google Cloud, obviously.
+Here I have lots of few links.
+The first one is directly to the expertise
+and partner advantage.
+With more information, it's also where you can,
+you know, request the partner expertise,
+send in the information to request that match.
+Also, I frequently ask questions.
+I'm sure you have a lot of questions
+about what this consists of.
+Here, hopefully most of them are answered
+and also slides that show you step-by-step
+with images how to apply to this expertise.
+More things.
+For those of you who don't know of our AI community,
+our partner engineering practice for AI.
+Now that we have a community in India
+where we organize sessions, technical sessions,
+every two weeks or sometimes even more often
+on the most demanded topics.
+Like today, we are talking about retail and commerce.
+Often we're talking about agent space,
+about, you know, image and video, gen AI media.
+We have sessions on Lyria, pretty much everything.
+So if you're interested in participating
+in these sessions and getting more information,
+here is a link to join our community
+and also a link to give us feedback
+whether it is about this specific session
+about a community in general.
+Okay.
+Remember, we will be uploading the recording
+and the slides for the session to our community.
+So you do need to be part of the community
+to access those resources.
+And more things.
+Coming up on June 12th, we have our hackathon.
+This is a great chance to win prizes
+and have fun and learn.
+This hackathon will have a part of AI,
+a part of data analytics, databases,
+app modernization.
+So it's a pretty complete one.
+What we ask from you is that you get together
+a team of up to six people
+and that can work together to solve the challenges
+that we're going to present during the hackathon.
+And you can join us either in person
+in one of these cities or online.
+So, you know, whichever works best for you
+will be more than happy to welcome you.
+Here's the link to the hackathon.
+And again, I think we will all have a lot of fun
+and learn a lot.
+So I would suggest that you sign up for our hackathon.
+Again, this is a summary.
+Where is the form to sign up to the community
+so that I can access all of, you know,
+the recording this slide?
+That's the first link.
+Again, if you want to check out any of the sessions
+that we already have, see the recordings
+about those sessions, watch them.
+Here's the link as well.
+If you have any questions about the community,
+here's our email.
+And if you have any feedback about the community
+or today's session, feel free to give us feedback
+in this link.
+We'll be more than happy to welcome your feedback.
+That's all. Thank you very much.

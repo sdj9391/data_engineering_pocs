@@ -1,0 +1,265 @@
+session. Yeah, I already started recording. Okay, okay, what do you want? Okay. Okay, so I will just give
+an overview of Google Cloud infrastructure. So what all services are there and what the services
+are doing particularly? Okay, so I will not take much time on it. So basically if you go to the
+all services and solutions from this SAP. So you can see we have categories for this. And
+mostly in these sessions, we will cover all the services which are related to
+AIML and this is basically vertex AI and all the other services which are basically
+needed within that AIML services. So for example, if we are going to use vertex AI
+search, then obviously we need some Google Cloud stories and other data store or plus maybe fire store
+we needed there or even cloud run we needed there. Okay, so these are the related services
+that I will cover. So I will from here in this list, I will try to cover those services
+in a brief. Okay, I'm not going in details right now. So basically this API and services, it is
+basically whatever services we have. So Google is basically providing all the APIs. And so
+and it allows you to enable that particular services through the API, you can create API keys with
+like authentication, we can say access key and secret key we can create from here
+and we can enable those particular APIs. So basically what it will do like Google is actually
+providing some sort of API and some SDK as well, and that we can integrate within our code
+and we can call these APIs to run that particular services from our code. And other thing is
+important thing is IAM and admin. So basically to give a particular access for a particular
+service or within that service, if we need to provide us some particular access like read write
+or some other access that we can manage from the IAM and admin. Then coming to this compute engine,
+so basically it is not needed right now, but I will tell like, if you know about the Azure
+VM instance or some VM things. So basically it is a kind of
+instance where we can create, we can like deploy our board as a container or as a source code
+and it will provide you some sort of like system configuration, RAM CPU, GPU or a desk. So here
+you can manage everything. Now coming to storage, so basically in our scenarios we are
+mostly using Google Cloud Storage. So it is nothing as like it will provide you some bucket,
+you can create some buckets within that particular bucket. So you can create a subfolder
+folders and subfolders and within that you can store your files. This files might be in any
+of the format. It might be a zip, it might be a .py file or some image, video, media file,
+anything and others are currently not required. Analytics, so we required pubsup. So basically
+it is a messaging services where we can create some topics and like there are two
+different things like whenever you send a message. So basically what is happening like some of you will
+some of you will send a message and some of other will receive that particular message.
+So in terms of pubsup what we are so basically in high
+it's a publisher and subscriber. So basically one will send the message and one will receive
+a message and in between there is a terminology called as topic, which is basically a we can
+say the list of which is basically the type of message we can say. So we can create
+a topic and through that topic we can pull or post the messages. I will go deeper on into
+this maybe today or tomorrow session. Now, so in this networking part, yeah.
+Okay, this one, go to analytics please. So just to give one liner for all, because whatever
+you know, that will be helpful a little bit. Like data flow, composure, okay, whatever
+I never go through, I only work with pop some other things. Give me some time, I will go
+through that as well, because I don't think like it is required for currently mostly we
+are like look, look, look, or you have some enterprise BI analytics, look or service. Okay,
+if you don't, okay, I will go through that because it's a not a small one. So I will go
+through that because like so many junior team members are also there. So they might be confused
+with the overall details. So in VPC network, it is basically in we can include the firewall
+rules and other network related settings to the like computing and like with our VM and
+all. Okay, now coming to this serverless. So basically, we, if you see, we have cloud run,
+we have cloud run function, and there's app engine API gateway and points. So basically,
+we will mostly use or will go in details for cloud run and cloud run functions. So what they
+did, basically, these are serverless services through these ACP. So what we can do is I will
+give you one example. Like in VM, what we are generally doing is like, we can deploy our
+container and we can like even deploy our script within the VM, we need to create all
+the APIs and we just need to create some sort of domain for that. We need to host that domain
+somewhere. Like we need to map that domain or to that hosting VM. And then maybe in some cases,
+we need required SSL configurations as well. So basically, that is actually needed for when
+you are running a complete like when you are deploying any like a web application type of
+things or when you are creating a backend API or backend services, and you are integrating
+with the mobile application or web application. In that condition, you are using the VM.
+But when we are talking about this serverless or cloud run, so for example, we need some type
+of application which needs to be run within the either like GCP services or Azure services,
+which is basically not required or some type of other web application or some other things.
+We can also deploy the web applications here. But we don't need some hosting type of thing
+or domain, sorry, we don't need a domain type of thing. Like we don't need to add any DNS or
+something with this like serverless service. So let me, okay, I will cover this in detail.
+So here also we have three types of things like one is cloud run, one is cloud run function,
+and the third one is jobs. So all of three have different purposes. So we'll go through in details.
+This is also part of cloud run basically. And I see App Engine having the same functionality,
+but your mind letting know what is the difference.
+Now it says managed application platform but so what is the difference between cloud run and App Engine?
+Why are we going for cloud run?
+I have less knowledge on this App Engine. I will go through it and I will cover that.
+Okay.
+Yeah.
+Okay. Just give me a moment if you already asked, let me.
+No worries and kisses.
+No, no, no.
+Accordingly then we can make it forward offline.
+So basically we can say like it is something similar to VM instance.
+Like we can deploy our web application or some like API endpoints as well.
+And we can scale them.
+I will go through this because I don't have much knowledge.
+No worries.
+Yeah.
+So whatever knowledge I have for our particular services, I will cover that.
+And if you guys will ask like let's cover this one as well, then I will cover those services as well.
+Okay.
+So now coming to this databases.
+So basically Google is providing some hosted database like for example in SQL, they are providing
+MySQL, Postcase and other SQL servers.
+So how you are working with like in your local maybe if someone worked for with the Postcase
+database or MySQL database.
+So in the same format they are already providing these databases and you can just create like
+You can just create an instance for that database and you can use it through use it for your particular application.
+When we are talking about the data store.
+So basically what is the data store is doing like whenever we are using this what I say I search.
+So basically we need to in some time in racks or listen.
+So basically in racks or listen, we need to deploy either a NoSQL data or some document related data like PDF, docs, some like Excel file, CSV file.
+So these type of data we can store within the data store.
+File store is basically like we can say it's a combination of SQL and NoSQL data like you can store data in a JSON format if you guys know MongoDB as well.
+So we can store the data in a JSON format as like NoSQL database.
+And also SQL also we can add I will show you this file store.
+There's one more thing like which I don't know like this is here with different name or word.
+So there's one more thing like BigQuery.
+So basically it is also a combination of SQL and NoSQL databases where you can store you can create a schema there and you can store your data there.
+But in BigQuery you can also like create pipelines you can create a monitoring you can create like you can train that data or evaluate that particular data for the ML training.
+In this section basically we have logging monitoring error reporting and trace.
+So logging is basically whenever you are writing any code or you whenever you are like writing any pipelines.
+Okay, so in that particular things you need to manage some log.
+For example, whenever you are writing any script.
+Let's say you have one API endpoint and in that API endpoint you have different stages like different functions you are calling.
+So in each functions or in each stages you might need to log some data or log some messages.
+So here.
+Basically, you can log up everything, these are stages and all other things.
+So there is some like, we have a service called Google Cloud Logging, so I will show that
+as well, how we need to use it, like whenever you will get any error also, you will figure
+it out within that log.
+So monitoring is basically, it's a generic term, it might be used within any of the services,
+might be it will use in Compute Engine or in Vortex IA Service for Commerce or in other
+services as well.
+So it's a generic word, a generic services, so what it will do?
+It will basically evaluate or check the quality of your application or like infrared thing.
+So let's say if you are using this monitoring service for the Compute Engine, then it will
+provide you when is the CPU is down or when is the loads are high, what is the disk availability,
+like is it low or high, these type of things, it will provide a graph for this or some other
+data.
+When you are using for the Vortex IA Service for Commerce, so basically what it will do
+like based on the pipeline, it will provide you some information.
+For example, if we have lots of data like coming from the events from the website, then it
+will provide you like with search query has been processed by a user or with catalog
+data has been clicked by user.
+So these things also we can monitor.
+Error reporting is basically like we can check the report of a particular error within the
+application or in a particular services.
+For file security app development.
+So these things I will not go through because they are just different.
+Yeah, one more thing here we have artifact history.
+So basically whenever we are like deploying any Docker container in either in Cloud Run or
+in Compute Engine, those things, those like containers, images for those containers,
+we can figure it out in artifacts.
+In terms of AI ML, like whenever we are training any model or whenever we are creating any checkpoint,
+those things we can figure it out in artifact.
+So basically it's a we can say it's a archive type of things where we have all the files
+and like container images, ML models, other things we can store it here.
+Coming to AI, so Google is providing so many AI services.
+First one is Vortex AI.
+So basically when you go to Vortex AI, so here we have some other features as well.
+Like for example, Vortex AI search, Vortex AI search for commerce, Vortex AI search for retail.
+There's like RAC solution.
+So there are other services they are provided within the Vortex translation.
+So basically like from this translation service, we can use for translating content to other languages.
+Document AI.
+So basically document AI is providing a complete solution for like document related data.
+For example, if you have PDF and documents and you want to like ask any queries related to a particular document,
+it will provide a better service for that.
+Search for commerce, it is basically providing like if you guys know about the algorithm or elastic source.
+So it's a beta version for those services that are provided by.
+So, mostly in this session, we are basically focusing on this search for commerce, okay.
+Discovery engine is basically a rack solution and its piece is basically if you want to
+convert audio to text or text to audio, this will provide you that solution.
+Text, vision, so basically whatever is, whatever pass AI solution you need in terms of media
+that it will provide these things, okay.
+Till now, any queries, any question, someone is creating?
+Hi, Ankit.
+What is elastic search?
+So basically less as in our website, what we are doing is like we have two different things.
+One is browse, like whenever you go to any website, okay.
+And you can see all the list of categories, subcategories and you can click on that and
+you will get a particular detail like listing page for that particular category or subcategories.
+And the other thing is search.
+So whenever you search any particular keyword, it will provide you with the list of product
+or list of items for that particular search query.
+So to improve the search result, to improve the search result, either we can use this
+elastic search or Albulia or this vertex ASS for commerce.
+So basic difference within these three or all other like service platforms are their algorithms
+are different, how they are handling the search queries that is like those algorithms are
+different for these other services, like Albulia is handling in a different way, their mechanism
+is different.
+So this is the search for commerce is handling this search query in different manner.
+So these are the difference.
+So basically these are the, we can say like enhancement of getting the result for a particular
+search query.
+Any other question?
+Okay.
+Okay, now I will show you some of the like dashboard for these services.
+So okay, let me cover this cloud run today.
+So basically in when you go to this cloud run, this is the like concern for this in GCP, you
+can even create the services through the code like Google is providing SDK in Python
+and other languages as well.
+So you can create all the services and jobs through that code or you can create it from
+here.
+So in services, you can see there are three different options.
+One is a deployer container, connector repo and writer function.
+So basically connector repo and deploy container are similar things in both the cases it
+will create a container as you booked.
+I will just make it two, three minutes.
+So let's say we have some code, which is written in our local system.
+And we want to deploy or we want to run that application through this serverless application.
+Then through the Docker command or through the Docker, we can create a image of that
+particular container and we can deploy it here.
+So for example, you can see we have created one chatbot application, right?
+So in this chatbot, basically what it will do, it will basically create a socket to
+communicate to do a chat-based communication, okay?
+So, for example, you can see this code, right?
+So this is basically a chatbot application, which I have created.
+And what we need to do is like, we need to just create a Docker file here.
+And here we can define all these parameters.
+And we can deploy this particular service through some like Docker boom.
+So, basically, Google is just, JCP is providing some command
+from which we can deploy this container.
+And it shows some other code.
+So you can see this code, right?
+So gcloud function and there is some like a file or folder
+which we can deploy.
+And there are some other parameters
+which we need to provide.
+And through that, it will create that particular container.
+And after deploying that container,
+it will show you like if there is any issue,
+it will show you the log for that.
+And based on that log, you can figure it out
+like what is the error.
+And you can fix and you can deploy it again.
+And once it is deployed, it will
+provide you a particular URL for this particular service.
+And you can use this particular service
+for any other application.
+Maybe as a webhook or API endpoint,
+you can use this particular endpoint, particular URL.
+And you can see it is already integrated with the SSL.
+So you don't need to add a particular SSL certificate here.
+And in the same manner, you can create a report in GitHub
+and you can create a CI CD pipeline.
+You can generate a particular container image
+and you can deploy it here.
+Now, this was actually the cloud run.
+Now, coming to cloud run function.
+So if you can see in cloud, this is a cloud run function.
+You can see there is a tab called source.
+And if you go to this particular container,
+you can see this source tab here.
+So basically, this application is directly running
+from the container itself.
+But in cloud run function, we basically need to add,
+we can actually add our script within this source code.
+So it is basically providing all the platform,
+all the languages.
+So we are using Python here.
+You can use Java, .NET, Node.js, React,
+everything you can use.
+You just need to change.
+Whenever you are creating, you will have an option
+to select a particular language.
+And based on that, you need to write
+that particular script.
+And then here, how we are writing a script in our local,
+in the same manner, you can add your script here.
+And you can run it.
+So after running this, you will get this URL.
+And this URL you can use in some other application.
+Susan, do we need to proceed further or we will do it later?
+I think we are pretty good with the overview.
+If anyone has any questions, they can raise it here.
+If not, we can continue the session tomorrow.

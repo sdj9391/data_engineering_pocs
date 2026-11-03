@@ -1,0 +1,712 @@
+Hello everyone. Just a quick intro for people who have joined for the first time. Myself,
+Rohan Shah, I have part of the Google from last three years and I mainly work with the
+detail search or the vertex search for commerce onboarding team where we help customers
+to onboard and get them to the AP test. So we have been doing this primarily from
+last three years. So today's session basically is more of a hands-on. We have not prepared any
+slides as such but you just wanted to ensure that looking from the feedback that we got from
+the last week's session that you would like to see how can we use the APIs and if there's
+anything we can show a practical session then that would help you guys. So we just
+wanted to ensure that we take this as a feedback and have a second session with just to show how
+can we use the different APIs and the public files. So without wasting much of time, what I'm
+going to do is like I'm just going to go to the public documentation and we'll just kind
+of demonstrate a few examples about how do we use the documentation API guides for the
+purpose of just trying it out and seeing how the API works. So I'll share my screen. I hope my
+screen is visible. Okay. So for the purpose of demo, I have created one sample project which has
+some hundred odd products. It doesn't have any user events at this point of time but it just
+has product catalog. I'm going to use this project to access some product information and
+show you guys how to use the API guide. So the first thing is what is important for us to use
+the APIs is the numeric project number. So many times we have this project ID but the
+customers or the partners find a hard time getting the numeric project number. So the
+easiest way of getting that is if you just go to the Google Cloud homepage at the section
+which says the project number. This is where you just get the numeric project number. It
+will be very handy to use it in the API guides. Now I will be going to the documentation
+page here. Okay. Now this is our retail search API documentation pages where we have
+different APIs. So how to use the catalog API or how to use the import of the product APIs,
+it is given here. This are all the APIs that we currently support for the vertex search
+performance. Now let's say I want to see how do we fetch a product information that I have in
+the catalog. Let's say you have a use case where you want to fetch a product information
+by making a call command or a request and then how the response is coming back. Let's say we
+just want to try it out. Now what I'm going to do is on every documentation page there is a
+try this method option which comes out here. If you see here there's an option which says
+try it out. If I just click on this thing it will give me a pop up which says okay can
+you enter your URL for which you want to get the product information. In this case I'm trying
+out the get command or get use case where I want to get a product information back from
+the catalog. I'll just expand this a bit. Now in the name what I'm going to do is I'm just
+going to provide the project URL parameter where I have to give the project number.
+As I mentioned this project number is a numeric project number that I copied over from my existing
+account. Then it has a particular syntax about which catalog and which branch we want to fetch
+this URL from or to product from. Right now I just have branch 0 so I'm using branch 0
+and this is my sample product ID for which I want to get the information for. This part is
+where you actually append extra product ID and via which you'll get the information back. So let's
+say I click on execute it gives me the response you're saying that okay this is your product this
+is the primary product ID this is the ID this is the category that it belongs to what is a brand
+description and everything right so this is a sample product so it may not have everything that
+you ideally insert into the catalog but it's a good way to understand how to use the commands or
+how to use the REST APIs through which you can integrate your app right it's a quick way we
+would say like without doing any integration on your website like last time I remember there
+was one question about how can we test the retail search without doing an integration
+so this could be one of the ways where you can actually try it out the APIs and see
+how the response comes back right the good thing is it also gives you different options about
+how do you make a HTTP request or how do you make a JavaScript request right so it gives a code
+snippet directly about okay if you are going to use a JavaScript this is how the code will
+look like and you have to make this this is the way how you have to make the request for it the
+response can be obtained in JSON or the raw HTTP format which are the way you want to consume
+but this gives me a kind of a view or idea about how do you want to proceed further right
+so this is one of the examples that I wanted to show I want to also show you another example
+which I think many of them would be interested in looking at so just let me share my under
+tab okay so I'm just clear this out so let's say I want to see for a particular query
+how is my response going to be right let's say my catalog is fashion based so it has
+some shoes and apparel or shirts in the catalog right so let's say I want to test it out
+how is my response going to be when I search for shoes right now the good thing is like
+if I if I just give the URL parameter right and if I miss out let's say if I miss out something
+on my request parameter it gives me a clear indication that okay that is something that
+I have missed out and it will throw an error so in this case if you see I have missed out the visitor
+ID which is a required argument for me to proceed further right so what I'm going to do is like
+I'll just add a visitor ID first of all and let's say I'll just add this one two three
+then I will say okay which for which query I want to do research for let's say the shoes right
+and I re-click on execute and it gives me a result of the query for my query shoes right
+so in this case let's say I get back the response and I have approximately 13 records
+getting back right so it gives you a good view this may not be like it may not it may change
+when you have the user events and the ranking might go up and down or if you apply some post
+rules all serving configs this might change but again it's a very good starting point to test
+out the things and see how the things are working and if you're getting the response that you're
+looking out for right so going forward if you want to let's say I want to add a filter right
+like I just want to say I want to get products for the particular brand in this case let's say I have
+a brand like in my control then what I'm going to do is I'm just going to use this filter
+there's syntax for it which you can always read from the documentation about how to
+apply a filter so in this case I'm just going to apply a filter for brand Nike and if I re-execute
+then you might see right like my result set has reduced from 13 to 9 to get back the request for
+only filter Nike right so all products which are only belonging to brand Nike right so
+again reiterating this is a very raw way of testing it out but a very good way to at least
+understand how the API works what are the required parameters for the API to work out and how to
+integrate that into your HR website right so you can always rely on this and see
+the only thing that you require is like a connection to your project and maybe if you
+have the access to your project then you can just try it out on the documentation page itself without
+even integrating it into your things, right?
+So, yeah, I think I had a couple of examples,
+but I'll just quickly go to the Q&A,
+there is anything that before I move to,
+like before I give it to Suresh,
+probably to the client with a specific visit ready,
+we would like to filter the search results
+and not show some specific variants of a product.
+Yes, it is the same thing.
+So if it's a, like for a particular visit ready,
+if you want to exclude some stuff,
+I think you have to manage it via filter.
+So let's say when you make a request
+for a particular visit ready,
+your filter condition is going to change
+for that particular visit ready, right?
+So you can always do that.
+It does that, you'll have to ensure
+that the filter condition is specific
+only to that visitor ID and not for everyone, right?
+So in this way, whenever you make a request,
+you kind of ensure that you're making a correct filter
+request, correct request with a filter
+that is only applicable for that visitor, right?
+I hope that answers your question.
+I'll hand it over to Suresh.
+He'll just walk you through the DCP console, but yeah.
+Yeah, thanks.
+Yeah, hi everyone, my name is Suresh.
+Yeah, I work in the sort of the vertex search on voting team
+as well as the professional services team
+and help to help with anything
+to do with vertex search commerce, right?
+I think there's another question.
+Can we exclude at a variant level?
+So again, right?
+If the variant has some attribute
+and you want to say there are three variants
+for the product and attribute is like X for variant one,
+attribute Y for variant two,
+and attribute Z for variant three,
+you can add appropriate filters
+and that variant will be excluded
+from the search response, right?
+Yeah, just extending from what Rohan told,
+let me just do that.
+Hopefully my screen is visible.
+Yeah, one thing is this is a good way
+to try out the APIs and all that.
+Good thing is you don't have to actually type out things.
+You can sort of click ops with your way through it.
+You can just, you know, click
+and only where you need to add things you need to.
+You can like, you know, add things or else you can just,
+you cannot go wrong with the JSON body
+because a lot of things is just like click ops sort of thing.
+So this is one thing,
+but just next to the API guides is the API section
+is the guides page.
+This has all the documentation for anything you need
+to understand in vertex search, right?
+It's sort of structured in a way
+that will give you more incremental information
+like what vertex search is, how to get started,
+how to ingest your data, how to interpret us,
+how to create a search request,
+how personalization works, and all those things, right?
+So it's structured in that way.
+Everything you need to know about something
+you should be able to find.
+Let's say I want to know
+how do I ingest real-time user events, right?
+So you can just go to the,
+like there's a section for recording real-time user events.
+If you, and it will have all the sort of guides, right?
+It is quite detailed.
+Most of the things that you want,
+you should be able to find it here.
+And as long, and once you understand something
+you want to try it out, obviously,
+you can just go to the reference part
+and then like try it out, right?
+So these two sort of tabs, I always keep handy
+and recommend to keep handy for like anything
+to understand or to try out in vertex search, right?
+Now with respect to the console,
+obviously once you enter, this is my test project,
+once you enter the GCP console,
+you will find this search for commerce,
+I have pinned it here,
+but this is where you will find the retail console.
+And it has multiple tabs, always overviews like what,
+like an overview of the different data errors
+and the thing.
+I'll go over each of these tabs
+to help you understand what these tabs,
+different tabs contain and how you can use that
+to your advantage in the implementation phase, right?
+So the data as it all talks about anything to do
+with catalog, the user events, that's the data.
+vertex search. So the catalog has, you know, we have three branches, one of them can be
+marked as a live branch and other ones, you can use it as staging or something, right?
+So this gives you what the different branches, the product or we open, you can filter here
+by product IDs only, like I want to say, get the detail about this product, you
+can get it and you can see the actual GCN, this will ideally, this should match this
+structure, right? The product structure that you see here, this will match here, right?
+So this is regarding the data catalog tab and very similar for events. This is my
+test data project, so it doesn't have a lot of events, but as you have events,
+it will like start populating graphically and you can see what's the, you know, events
+ingested on a date-wise range. You can see the problems as in the number of unjent
+events, unjent events are basically the product IDs in the events are not there
+in the catalog, so they cannot be joined with the catalog, right, to show you,
+like, all the things. Ignore the numbers, they are all like from my test
+project, so it doesn't have like proper things, I believe you would see a more
+nice graph, right? The other thing is the import, right? There's an activity status,
+you can import catalog and user events from this tab, mostly as a testing
+purpose, as a tryout thing, ideally you will be implementing a proper ETL or
+calling the import of the catalog in a programmatic using the APIs or using the
+SDK, but you can still do it here, right? So if you click on the import, you
+can select what you want to import, catalog or user events, select the source,
+BigQuery, a cluster of Merchant Center. Merchant Center is not like super great,
+but it is more like a quick integration. It is not meant for production-level
+things, so that's one caveat here, which is really not mentioned.
+The look, once you say BigQuery, you can sort of save which branch you
+want to upload to, and then you can actually browse through your, you
+know, actual BigQuery path, you can give the dataset name, and then you say,
+like, hey, this is, I think, and you can see import. Once you see import, you
+would ideally see in this activity status tab. Again, activity status
+tab has multiple things, mainly catalog, user events. These are import
+controls also, and attributes also, but these are not very commonly used.
+Most commonly imported are, the import is used for catalog and user events,
+but anything, right? Whenever you do bulk import through the query or GCS,
+you would see the activity, you know, the status of that job here, status,
+how many succeeded, how much failed, and if you, it will give you the
+why it failed, right? It will, like, log the details and, like,
+you can have a sample view of the errors here, or you can have a complete
+view here. I think when you say complete view, it will just take you to the
+bucket. You can actually download the errors file and you can, like, go
+through it. We have, like, okay, this product failed because you didn't add
+the, whatever, right, tidy or something like that, or the product
+query is not passed, whatever, it's something like that. But yeah, this is
+only for the products imported through bulk import fashion, right?
+For user events, you can import user events through the import API or
+through this import sort of button here. You would see the same things,
+right, similar numbers, when the import happened, how much succeeded,
+how much failed, what are the failure logs and all that. So this will give
+you a good, I think, that all these details are programmatically
+accessible through the REST API. For example, import, you can build
+your own dashboard based on the response of, you know, this import
+job, it will give you all the details, right? So nothing is, it's
+just a small dashboard on top of the import activity, right?
+They're being for controls and attributes, but these are not, like,
+very commonly used. Obviously, if you have one this week project
+and you have some controls there, you want to migrate the same sort of
+hundred controls to another project, you can sort of download
+that controls and upload it here as well. Same thing for attributes,
+right? The other time is the data quality. This we have given a
+screenshot in the previous, whatever, right, session.
+Here, it will tell you which tier of the model is.
+I'm not going into the detail of what this tier means.
+It's there in the previous session.
+But you can actually see, like, you know,
+what check is failing, it'll give you more details,
+it'll give you some violation samples if it is there,
+so that you can go ahead and fix it,
+do some analytics over it or like fix those thresholds,
+fix those data quality issues
+so that the thresholds is not being met, right?
+Separate tags for search, browse, and yeah,
+separate tags for search,
+text search, browse, and conversational search.
+So again, all the details will be listed,
+like what the model tier, what are the issues,
+what are the thresholds that are not being met,
+and so on, right?
+I would, there's a configured alerts
+which is highly recommended
+where today you are seeing everything is green,
+but there could be some kind of issue
+which is, which goes unknown
+and that will, like, deteriorate your data quality, right?
+So in order for you to catch that,
+you can configure alerts
+where you can add some, like, sort of email,
+configure some emails,
+so that whenever there is a change in quality,
+whenever it's green,
+whether it becomes from green to yellow or red,
+you will get alerted so that you can look at this
+and then decide, like, you know, debug in that angle, right?
+The other, the next step is the serving configs.
+Here, you can imagine serving config to be like a handle.
+Say there's a search serving config,
+that handle, you can attach multiple rules to it.
+You can have another search
+with a completely defensive of rules
+or, you know, some overlapping set of rules, right?
+So this is something that, let's say,
+you, as an example, you have two versions of the app, right?
+There's a dark mode and a light mode.
+The production in the dark mode is different.
+The production of the light mode is different, right?
+So you would ideally have a serving config,
+let's say dark mode search, whatever, right?
+Dark app, default search,
+and then attach some filter rules
+where it includes some products, for example,
+and in the serving config, for the light mode,
+you have a different filter rule
+or a different boost rule, and it will work differently.
+And obviously, when you make the API call in the search here,
+you need to pass the right, you know, the placement, right?
+So if you see here, the default search is the placement.
+You, if you have, if you create a different serving config,
+you need to pass that and, you know,
+the rules attached to that serving config
+sort of will get applied, right?
+So this will just list you, the different serving config.
+If you click on this, it will show you
+the different rules that is attached.
+Each serving config has a certain additional configurations,
+like you can enable personalization,
+enable dynamic facets, disable it,
+you can create a new rule, an existing rule, and so on.
+I'll come to the rules part a little bit later.
+You can sort of look at how the search
+is how the, the preview, the results
+of this particular serving config through the evaluate page.
+So if I do like T-shirt, it can give you a very,
+it's a very rudimentary UI,
+but you will still get some, you know,
+a quick preview of how the search is working, right?
+There's a very rudimentary, I would say, analytics,
+where it will like, I mean, obviously,
+my search of conflict doesn't have a lot of traffic,
+so it's not having analytics,
+but you can see like click-to-rates, conversion rates,
+a few of the metrics in the analytics part.
+That's regarding the serving config.
+Obviously, this will include search,
+recommendation, browse, all those things, right?
+If you see here, I have recommendations
+and have a recommendation with boost.
+So I can play around with it.
+I can have an AB test where I have
+the default recommending how the vanilla
+recommendation, I have another recommendation model
+that has some of my rules.
+I can do an AB test with that, right?
+So in order to handle those kind of use cues also,
+the serving configs becomes useful.
+This is, the model's part here is mainly for recommendations,
+not for search or browse,
+because search and browse is a single model.
+You don't have multiple models,
+only recommendations you have like multiple models, right?
+So yeah, you can, whatever you can do in this dashboard,
+you can do it programmatically as well.
+Just wanted to retrain that, right?
+But this is more of a click-offs way of doing things.
+Obviously, when you say create module,
+you can select which module you want.
+If you see others you may like,
+you will see the business objective,
+what you want to optimize for,
+let's say conversion rate,
+and it will tell you the requirements.
+Do you have enough events?
+My test project doesn't have a lot of events,
+so it will tell that,
+hey, you haven't met this requirement.
+If you have met this requirement,
+it would become green and it would show,
+and then you would be able to create that module,
+the create module would show up,
+and you can actually create the module.
+Right now, I don't have the recommended
+data or the events,
+that's why I'm not able to create a module.
+I think I can only create a similar items module,
+which doesn't require events.
+So if you see similar items,
+it has a very low threshold of requirements,
+and then I can say create,
+it would create a module.
+Then you can see the current state of
+the module in terms of if it's ready to query,
+if it was the tuning setting for the training settings.
+I believe we are going to keep it by default,
+but you can start and stop the training or the tuning
+based on if your catalog has changed
+a lot in the recent past, things like that.
+By default, the default settings
+are the recommended settings.
+Going to the next step is the controls part.
+This is where you can add your business rules or the controls.
+Again, this can be added for search browser recommendations.
+Search and browse have a lot more control options
+than for recommendations.
+But as I just mentioned, the list of controls,
+let's say I'm doing it for search,
+you can have a boost very control,
+pinning filter, redirect, and some linguistic controls,
+where it's mostly like synonyms or
+ignore replacement and all those things.
+I want to replace a query with another query and so on.
+But these are the broad range of controls that are there.
+Let's say I want to put a boost.
+I have a particular brand which I want to pump up
+when a particular keyword is typed or for all keywords.
+Let's say I continue.
+You can say it applies for the search query or it can apply for
+the page category and say search.
+When I say partial match,
+if any query that contains T-shirt in the query,
+the rule will get triggered.
+If I don't put anything and if I say continue,
+the boost rule will be activated for every query.
+And let's say I put it for partial for T-shirt
+when it gets triggered.
+Then you can have something.
+Then you can say my brands,
+if it's any of the any does,
+then boost it by whatever the percentage you want.
+And then you can add it to any of the serving configs
+that I mentioned earlier.
+So this way you can add rules.
+You can add multiple rules and then add it to a config.
+So these rules get triggered based on your trigger condition
+or it gets applied for every query.
+The triggers are not applicable for linguistic query.
+And for linguistic query,
+it's always based on a particular query.
+The filter and the boost,
+you can apply it for a certain queries,
+partial query or like all the queries,
+regardless of what the search query was.
+You can have a time range that this rule,
+you can pre-create the control
+and configure the start and end time.
+It would get activated only at that start and end time.
+And then you can do it.
+So this is how you can mix and aggregate through it.
+This will give you all the different rules that are there.
+You can, you know, split it through it.
+You can export controls and you can import controls
+very similar to what I showed in the data quality tab.
+These are all the attributes and the different flags
+that can be enabled for the attributes.
+Let's say I want to make this particular
+attribute like searchable, right?
+It is currently false.
+I can say modify and I can say whatever,
+searchable true or something, right?
+And then if you save it, it will work.
+So you can change the different flags in this page.
+There are a few for auto-complete,
+there are a few for auto-complete.
+that there are very limited set of controls
+but still you can go through them here.
+Facet controls, if you want to override
+a particular facet value, something like that.
+Let's say for category code,
+it comes to the value three, four, five,
+but instead of showing three, four, five,
+you want to show the value blue,
+you can do it.
+Again, there are multiple facet controls.
+I won't go through all of them,
+but then this is where you would be sort of adding,
+right?
+There is another thing called merchant console.
+So Rohan, do you want to talk about this?
+Or yeah, I'll just look at Rohan, let's talk about this.
+I'll just go to the project link.
+So primarily we had recently created a new experience
+for merchant control wherein we had this request
+from many customers that we have merchant writers
+who want to apply the rules or want to see
+certain kind of rules and it was becoming very difficult
+for the customer to handle this because when it could be
+that it becomes very overload about, okay,
+which rules are correct ones to apply,
+which ones are not.
+And secondly, we cannot give all the merchandisers
+the admin access otherwise if something goes wrong,
+then the entire system might get impacted, right?
+So it's a quick UI that the team has built.
+Oops, I think we lost Rohan.
+Rohan, can you hear me?
+Oh yeah.
+Rohan, I think we lost for a few seconds.
+Okay, sorry.
+Am I audible now?
+Yeah, can you repeat that?
+Am I audible now?
+Yeah, now it's fine.
+Yeah, it was just a few seconds.
+Yeah, yeah, yeah.
+So I'll just repeat it again.
+So in the serving controls,
+we have a tab which says merchant console.
+When you click here, it will give you
+and this is only for the admin right now.
+So it gives an instance link, right?
+So let's say you are the admin of this project,
+but you want to give instance links
+to different merchandisers, right?
+So you can do this easily by doing the IAM rules,
+but right now I'll just quickly show you a demo
+about how the merchant console looks like.
+So let's say I want to add a new control, right?
+About pinning control.
+So many times we have this contract with a brand
+say that okay, no matter whatever the query is,
+I want to show my product at position N, right?
+Like in the result set.
+So let's say for that we have a pinning control.
+So what I'm going to send is going to create one
+pinning control, right?
+And let's say I want to do it for search.
+I will select pinning here.
+I'll click next.
+Now this is where you get a kind of a view about
+what is the change that you're going to make
+and how it will look like in the actual result set.
+So let's say I search for shoes, right?
+And right now this is my result set
+that I get back for the query shoes, right?
+And for some reason I want to get this Puma shoes
+at let's say position number one, right?
+So what I want this, I'm just going to copy the product ID
+for that shoes and say, okay, this is a product ID
+and I want it to be at position number one, right?
+So if you see here, it reflects you
+that this product is not pinned to position one.
+This overrides our AI rankings
+and applies the rules in that I want this product
+to be at position one, right?
+So I can change the position from here
+and let's say if I move it to two,
+it now shifts to position number two, right?
+So you can actually play around with this
+and what have, because I am an admin right now,
+I don't have to go through the entire flow
+of getting it approved.
+But imagine that I'm a merchandiser.
+What I'm going to do is that I'm going to say save,
+it will go up for an approval process to the admin,
+which will say that, okay, if this rule is applied,
+is it correct and should I publish it
+to my main config or not, right?
+So it follows the entire approval process as well
+so that it doesn't get mess around
+with that in search results, right?
+So I'll say publish for now
+and then it gets published to my actual serving config, right?
+So if I go back to my project where I have the controls,
+you will see that there is one pinning control
+being added.
+which I recently added for my config default search for one product right. So you can play
+around with it actually to just see applying this control how it's going to impact your
+like the entire result set maybe like you can want you want to also try it for boost right let's
+say you want to try it out for a boost condition how does the boost condition change my values
+right so let's say I'll say for brand Nike I want to apply boost so if you see my boost
+is 0.5 right now but if I change it to one all my Nike shoes will be at the top and then
+the Puma shoes are at the bottom. So this is what the serving control is going to do sorry
+the merchant console is going to do to show you what the impact is or what the change is
+going to give you the results set and also it kind of restricts this entire thing from
+going directly into production there is a wall between where the admin of the person is responsible
+for applying this is confirms that if this is what is correct to apply or not and only
+if the things are what is correct he just then publishes right so yeah this is all
+our day. Yeah so just wanted to add just a few points extra to whatever one told so you
+can actually have a question at that the before creating a rule that the merchants
+needs to answer right let's say this why you need this or give me some data points
+so when we create the control they have to answer some questions they have to give whatever
+you can decide what the question is and all that I'm just like spending some random and
+then you can do the same thing you can create a control and all that let's say you don't
+you know that mean you create a control and you say save it should have published right
+now it would get listed here and the approver who are as marked as the approver can reduce
+this can say hey this looks good I'll approve it you go to the production okay this doesn't
+look good so actually there's not a great risk is they can deny it and so on right so this
+is basically adding hierarchy and bureaucracy in the in the merchant or the adding the
+control rules because that bureaucracy is needed to make sure no one is like adding rules left
+and right into the you know production system right so this is a safe without having to give
+access to GCP console which gets very technical for a lot of merchandisers they can just
+get access to this URL and they can just clear on with this right and you know for
+sure that it won't go to production it will sort of someone is going to review it and
+approve it only then it will hit production right so it's a safe way to clear on three
+rules add bureaucracy or hierarchy so that you know things aren't controls are a thing
+right yeah that's regarding the the controls page evaluate which is very simple it's it's
+basically three view of the models right how the search works it's very similar to what
+is one the serving conflict here you can you know select the different serving conflicts
+and then you can create things like obviously this doesn't have filters it cannot have a boost
+you can't get a boost rule in the search API for example if you see the the search
+API only the filter and boost you can add it at the you know per search query level
+every other rule like pinning or something you have to add it as a control filter and boost is
+something that you can add it even at the search query level so those boosts or those filters
+will get sort of added up so that you have like additional control but yeah let's say you
+don't have any filter or boost in this evaluate tab it's not easy to add it's mostly like quick
+view of how search or browse works you can preview the recommendations as well I probably
+don't have a great recommendation money but then you can actually sort of if you enter the right
+parameters you you can actually see the proper things right monitoring is where you would see
+the internal monitoring stuff on my place like what's the traffic and all that let me see if I can
+pull up a sample project.
+Give me one right, right?
+So if I go to a monitoring, you would see,
+you know, what's the traffic by API method,
+errors by API method, and the latency and so on.
+You would see additional logs, any error logs.
+If you're sending user events in real time
+or the catalog in using real-time APIs,
+those errors will not get logged in the activity console
+in the data here.
+This would come, you know, in the monitoring tab here.
+You can see if there were like any user event errors.
+It would directly take you to the, you know,
+a stack driver.
+Let me try that.
+So this is a different customer.
+If you see this has, this customer has some errors
+and it will show, okay, what are the different errors.
+And if I click this, it will actually take you
+to the stack driver page.
+And then with more detailed, you know, information
+about what was the error and so on.
+So you can debug this way, right?
+So that is regarding the monitoring page.
+You can even add alerts.
+I recommend it that if you want to know
+if there are error rate increases,
+you want to integrate that into your paging system
+or something on-call system,
+you can like add those alerts here.
+You can create, change the logging level to all
+or only error depending on your needs.
+If you're doing a development, probably you can log everything.
+Once it's stable, you can probably log
+only the warnings and errors, right?
+So this is regarding the monitoring page.
+Very standard, you know, cloud SaaS monitoring
+sort of a thing.
+The analytics is where you would see some basic metrics
+around search, browse and recommendations.
+My test data doesn't have a lot of things.
+Let me see if I can pull in something
+from another customer.
+So this would be very high level metrics
+of like per search or per session metrics.
+You would see the different things, right?
+Okay, this is also not having a lot of things.
+Let's say analytics.
+So yeah, this would again, right?
+This is mostly for like very quick view
+of how the search is performing
+and all those things.
+Yeah, for some reason, I don't have a good project
+where there is a valid analytics data, right?
+Again, you can see it for the different models,
+search and browse, but this is at a very high level.
+It is not a very deep analytics, I would say.
+The experiment dashboard is where you can configure.
+If you're having an activity test,
+you can configure it.
+But let's say, if you do an experiment,
+it's same as this.
+Let's say I'll open this experiment.
+You basically can sort of configure
+that what's the start date of my experiment?
+What's the end date?
+Was it for search?
+What are the different arms that are there?
+You can have a three-way test if you want
+or a two-way test, what's the traffic split?
+And if you click, you can put the different experiment IDs
+in the events, you know?
+And once everything is there,
+you can actually monitor the different,
+you can monitor the different metrics of the AB test, right?
+Obviously, this is my test data,
+so it doesn't have great good data.
+I'm just seeing if I can pull in something
+from even one minute later.
+Yes.
+Yeah, I think it would be difficult to share a valid
+on-going experiment.
+It probably is not a good idea to do that.
+But anyway, hopefully, you guys get the idea of how
+to configure an experiment and what
+are the different metrics you see here.
+And you can monitor it, analyze it,
+debug it through this thing.
+The last one is the Conversation tab.
+This is mainly for advanced features.
+Once you do a live 100-person on-virtue search,
+is where the conversational tab sort of becomes active or valid.
+This is where you can see if your catalog or user
+events is sort of ready for conversational search.
+And then you can see what data threshold is missing
+or what can be what you need to do further.
+You can sort of get the conversational search
+experience in the evaluate page.
+So probably I type like a t-shirt or something.
+I'm not sure if this is enabled for this project.
+It's not enabled for this project.
+So in the evaluate tab itself, you
+can actually try to sort of get a preview of the conversational
+search feature.
+But these are more advanced features
+that only come once you go live with vertex search.
+So I wouldn't dwell too much on it.
+And it's a new feature.
+So we're still sort of bringing the dashboards
+and other things for it.
+What I wanted to show was in the conversational search,
+you can actually, basically, a question
+answer sort of a way of filtering products.
+You can actually see the AI-generated questions.
+You can say it's allowed in conversation
+or you can edit the question and so on, which is, again,
+all part of the conversational search experience.
+So yeah, that's mostly it regarding the console.
+It has a lot of things.
+Hopefully, we were able to give you a good understanding
+about how to navigate and how to play around
+with the console if you have to find something, where
+to look for it in the documentation and so on.
+So that's all I have.

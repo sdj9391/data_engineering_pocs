@@ -1,0 +1,272 @@
+So yesterday I talked about the data and like all these fields here, some overviews only, okay.
+So now I will talk mostly about the controls and serving config, okay.
+Okay, so before going there, like I will talk about this brands thing as well.
+So basically in brands like you can see we have three different branches, right?
+So these are basically we can maintain the dev production or pre-processing brands we can consider.
+And from the code or whenever we are going to import any data we can select the brands and import them there.
+So if we go to this import data, so basically whenever we are developing any pipeline,
+so we are doing it through the code, through the APIs, but in the dashboard also we have this option.
+So here you can see like we have a product catalog and then user event.
+Then if you select product catalog, you will have some different options like Google cloud storage, BigQuery and merchant center sync.
+Okay, if you select any cloud storage, then you need to select a particular brand for which you are going to import that data.
+And then you will have like you need to provide the location of that particular Google cloud storage.
+Okay, so you need to select that and you can pass on that data.
+Yeah, but before that you need to prepare your data as per the schema as I mentioned yesterday.
+If you select BigQuery, then you need to provide the again brands name and the path of the BigQuery table.
+Okay, same if you select the user events, then you will have Google cloud storage and BigQuery as an option.
+And from which like for, so basically Google analytic services, whatever services we have for Google, for the analytics in Google.
+So they are providing a particular schema for this, what I say is for commerce.
+Okay, so they already prepared that like a schema according to this one.
+So we can select these three options and we can select the BigQuery path.
+Okay, so yeah, this is how we can import the data.
+Now, if you want to see all the schema and all this, all the information about a particular product, then you can just click on view details and you will have all the data here, like all the attributes and their values.
+So this is very less. So basically we'll have more than like based on the attribute size will have more than 20, 50 or 100 of data here.
+So second thing is data quality.
+So basically, or whatever you will import any data in any of the branches.
+So you can seek your data, like how relevant it is, like how, like if there's any issue with the data or anything.
+So you can like, you can see like in tier one, we have some issue related to like, this is saying performance or critical.
+So product, percent of product with a description, product catalog value percentage, geo percent actually, and threshold is 90%.
+So if you go to the details, so you can see like in most of the product, we don't have description and Google actually needs description specifically for like almost 90% of the product.
+Okay.
+So it is basically currently it is 0%. So we can take all the details here and like for which particular product ID it is giving the error.
+So we can see here and based on this evaluation, we can fix our data and import it again.
+So the same thing is for text search, browse and conversational search, they are providing.
+And for all the tiers, they are providing this particular information like how many are
+blocking how many are critical. So you can go through the details of it and you can fix
+your data and upload it again. Any question? No.
+Okay. Now coming to Serving Config. So basically Serving Config is something like we can add
+condition on top of the browser like Serves and Brows. Okay. So let's say if we need to add like
+let's say in our website, we have different views like one is light mode and one is dark mode.
+But what we wanted is like for light view, for light mode, for a particular product, we want
+some different details about that product. And in dark mode, we need some different details. So
+we can add those conditions. We can add those controls here. And based on this, it will work.
+So I will show you one example. So we can create Serving Config and we can select here,
+like they are providing two different options. One is for Serves and Brows and second one is
+for the recommendation. So I will go through Serves and Brows. So just put some name,
+like demo and then like we have option for enable dynamic web professors and enable
+presentation. So we can select and select this. Then we need to create a create a control for this
+Serving Config. So whatever you are seeing here, right in controls. So basically when we add
+any control here also, we can add controls directly here and we can pass it to Serving Config
+or we can create a control here. It will be listed in the control panel, control settings.
+So let's say demo
+and so I win the control name and then we need to select like whatever product
+we need this control. So I'm selecting Serves and Brows. So there are some predefined control
+type. So first one is Borscht body controls. So basically if you want to, let's say there is
+some product which you want like for a particular category or in a default
+server. So if you want that particular product to be shown as a like in not in
+first position, maybe like whenever a user will search for a particular query,
+those products would be shown in first page or in first row. So that we can push like we have
+threshold value and we can like increase or decrease that. I will go through that.
+So second one is product pinning controls. So basically what is happening here, like if you
+for a particular product, for a particular query, you want a particular product to be
+pinned in a specific position, then you can create this pinned type. So let's say I'm saying
+SEWS and as a parcel maths and
+I am at you're saying something with us so yeah actually I was just a minute I will come
+back okay so in control so basically what I am doing is and adding product
+search either you can select search by item name or the inter item ID so what I am doing is like
+I will just select a particular product let's say there is one product called golden soos
+so I am just mentioning it as a one position let me add one more product like in the source
+right so so I will make it in third position so so in config I will say like for default
+search for it so now I am submitting this okay so for this demo what I will do like we can
+evaluate the controls as well so here you can see like if we add it so we are settings then
+controls what controls are there what are controls we have added for this serving config that we can
+evaluate that we can see in evaluate so basically we can evaluate that particular
+serving config here so let's say I'm saying soos as a source query so what it will do like it
+will so you can see we pin that particular product right golden soos at first position and
+red soos at third position so this is coming like in browser also whenever we are going to search
+for this particular query or parcel match of this query and then it will give me the result like
+giving me these two product in a specific position any question
+like this one actually I give it somewhere else so as I understand like this is similar to
+algorithm like we are giving the rules here so suppose we have multiple rules or we have
+created one rule at this point of time and the criteria which is working now we have changed
+from the from the data side so in this case we have to update the rules or how or it will be
+automatically nullified as data and condition is not matching now so if the data conditions are
+not matching then it will be nullified right why I'm asking like suppose in production hundreds
+of rules business will be creating for a particular skew or product and suddenly they will change
+they will remove this skew itself so and they don't want to go and change the rules because it
+will be very tedious task for them so sometime it has created some problem that is I'm asking
+yeah so you're saying like in that particular product has been removed right or one field has
+been updated like visible online today this product is pinned on the first place saying
+that okay you are going for shoes let's ABC shoes should be coming on talk tomorrow I don't want to
+see on this so I don't remove this skew but I do update the visible channel false but
+sometimes it keeps coming in the search result this happens so it will not happen
+yeah so basically if I understood correctly if you are like that product does not exist or
+so fields are not doesn't exist then what will happen like you need to update the catalog data and
+You also need to update this particular serving config
+if it is not serving anymore for that particular condition.
+OK, so we have to change the serving condition, right?
+Yes.
+Again, it will be a task for business, right?
+Yeah.
+So beta is like you need to update the catalog data itself.
+Data, we are anyway updated now.
+But the conditions, because finding the conditions,
+again, it will be a task.
+And sometimes business will be lazy.
+They won't take it.
+OK, I got it.
+So by and large, it should be done automatically.
+No need to update the config.
+It will be taken since condition is fairly.
+Am I correct?
+Yes.
+I will say, like I'll connect with you and say,
+if you are facing the current situation right now.
+OK, so in this manner, you can create
+different type of serving config.
+And there are other things like create models.
+So basically, Google has some predefined options here.
+So you can see recommended volume.
+And so basically, we can show some product to the users,
+like based on their shopping history or view history.
+We can create that particular add this particular tiles
+in the website and through the API.
+Others you may like saying we can do frequently problem.
+So you can see like all of these items are basically
+what I was showing you from the flip part, right?
+So all these items you are seeing as a tiles.
+So these items can be added here.
+And we can call these particular tiles as an API.
+And we can serve it to website.
+So whether we will create any model.
+So basically to select any of this.
+So what it will do, it will basically train multiple models
+based on the catalog data and based on the user events.
+So if you are going to select, let's say, recommended for you.
+So let's say, OK, so when I select recommended for you,
+so it will basically ask you what is the business objective,
+like CTR, CVR, or revenue per session.
+So we can select this.
+And so I hope you guys know this terminology, right?
+CTR, CVR, and revenue per session.
+Or I need to explain, OK, hoping you guys
+know this because you are working with e-commerce.
+So basically, when I'm here, so what
+it is showing like data requirement, right?
+So we don't have the event data here right now in this
+application in this particular project.
+So I basically can create this.
+So we must have that particular data.
+So it will provide you all conditions
+so that if these conditions meet, then only we
+can create this particular model.
+If you select other options also, it
+will provide you if the data requirement met or not.
+So you can see we don't have much data here,
+so we can't do it.
+For similar product, we have this.
+It is saying, like, at 100 products,
+you must be in some branch.
+So we already have.
+So it is giving me the create option.
+So we can create it and based on this,
+we can call the API and show it in website.
+So for others also, we don't have particular data.
+OK, so we can create model from here itself with this data.
+Yes.
+So basically, whenever we are going to create any of this model,
+so it will take.
+your current data either related to catalog or user event based on your model type and it will
+train that model and then it will provide you the data and yeah obviously like as I said earlier
+so whenever your data will be updated these models are also going to train every time okay
+one thing here like we are creating model with this data so model will have some more
+capability so it will be I mean how what I mean I understood correct me how I'm understanding
+me understanding it's correct or not like the model there will be some some rules and some
+algorithm for that and this data will be going on that so how we are choosing the model we
+can only select the model type okay so model means so okay let me explain you in different
+way so basically if you are like this is something like a like category okay and in each category
+like they are having some different algorithms okay which is already in place for a particular
+user and whenever we are selecting that particular category based on your current data it will train
+or tune that particular model okay okay so yeah just thinking of some real-time example okay just
+see like just see an example of boy a five-year boy okay so he or she don't have any knowledge
+maybe he or she have some knowledge about some particular things like how to catch up all how
+to like like hold the bat and everything okay so and other boy or girl has some different thing
+like how to hold tennis racket how to like move it okay this is the basic knowledge both have
+so what we are going to do like if I want to I want that particular boy to boy or girl to play a
+cricket or tennis so what I will do I will select a particular person there and I will provide him
+him or some particular knowledge about that particular that specific data right so if I select
+cricket then I will provide knowledge about the cricket how to play it how to like hold that bat
+particularly right so that particular boy or girl is a basically architects or algorithm okay
+and whatever data we are passing that is basically the knowledge base we are passing to
+that particular person right okay so now coming to this controls so all the controls are here so
+serving controls as I told like whatever controls we are creating within the serving config so that
+is actually listed here we can also create controls specifically here and we can select
+in the serving config then we have attribute controls so basically in all the attributes for
+all the products will be listed here and we can modify these controls so either like indexable
+true false dynamic festering and telling so several retrieval accept mass retrieval so these
+items so like either it should be true or false that we can select autocomplete controls so basically
+like whatever like we are searching as whenever we are searching any query we are seeing like autocomplete
+text are coming, other queries are coming.
+So those things that we can like manage.
+So basically they are providing denialist
+do not remove list and search it terms list.
+So we can import that particular data
+and we can add it here.
+So first set of tiles controls.
+So basically here, whatever filters we need
+for a specific category or subcategory
+that we can control here.
+So they are providing these options for the controls.
+So we can select it and we can write our
+like conditions based on this.
+Merchant console, so Merchant console is something
+like I don't have this permission here.
+So what it is actually doing,
+it is actually only available for the admin role.
+And so let's say whenever we need to boot
+or we need to promote any particular merchant
+or particular brand, then we can select
+those particular brand sale.
+And what will happen, like whenever you will select
+let's say I'm for bolting purpose,
+so I select a brand called Adidas.
+Okay, so whenever we are going to search
+any query on that particular website,
+what it will do, it will show me the Adidas
+as a first place as a sponsored product and all.
+Okay, so these things so we can handle
+through the Merchant console.
+So this is still I think in beta mode or something.
+I'm not sure, but yeah, this is what it is doing.
+Coming to the evaluate, so basically I have shown you
+in Serving Config we have that evaluate section, right?
+So you can select your particular Serving Config here.
+Let's say for search, we have created
+some Serving Config, right?
+We can select that and based on like we can say
+like whatever controls or whatever Serving Config
+so we have created that that is properly working or not.
+So we can say like once we select source
+we are seeing these positions.
+Okay, so coming to the monitoring,
+so basically it will provide you the details
+for the traffic, the error errors,
+like whatever APIs we are calling through this,
+what exercise is for commerce to the website.
+So what all API matters are getting called,
+how much like times they are getting called
+and if there is any error with that particular API
+then it will show you that particular data here.
+Okay, and it will also provide you the information
+about that particular event, okay?
+So in analytics, so like how we are seeing the analytics
+in Google, like GA4 or Google Tag Manager,
+like how much if you select for the companies
+and source of browse, like how many servers are getting
+done for particular like query or how many
+visits are there.
+So those things are in terms of different
+analytic tags that we can identify here,
+like for example, search count,
+no result rate, serial parsers.
+So these things we can analyze here.
+Okay, any question?
+So I think most of the things I have covered
+for this vertex as per commerce.
+And for this code level, basically I can't say
+because there's actually whatever I have
+that is basically related to client.
+So yeah.
+If you guys want to see that, you just need to come to my site and drive it slowly.
+Yeah, we'll come sometime.
+Actually, this is the vertex code, right?

@@ -1,0 +1,324 @@
+Yeah, so now today I will try to cover topics related to like what is pipeline, what is
+what is AI source for commerce and the core concept of like how we are designing a pipeline
+and what all components we can add into it. Okay, so let's jump into this what is AI source
+for commerce first, then I will go through the pipeline thing. So basically, what is
+happening like whenever you source anything within a within any website or mobile application.
+So the search query is basically working as a like whenever you type like long long search
+half sleep. So this type of query whenever you will process within the like a website.
+So what it will do, it will just fetch the keyword from that sentence and it will give
+you the result based on that. So in some time, you will get not the you will not get the
+proper result as expected. Right. So in terms of that to like overcome or to mitigate this
+search issues, like we have a different type of AI solutions. So, or some other search
+engines. For example, we have algorithm, elastic servers, and other tools are available.
+But they also have some major problem with their algorithms, like for example, I told,
+like, some solutions are working as a working with the query as a word format, like it will
+search for the particular words within the sentence. Okay, even if you type anything
+in Google, Google also what it will do, whatever words are containing within that sentence,
+it will search for that particular parts. Okay. But in what XA is for commerce, they
+have their different algorithm, which is basically based on the AI concept. So what it is, what it is
+actually doing is like, it will basically search for a particular. Okay, so let me give you one
+example. So in the legacy system, or like what a search engines available. So there, if you search
+for a particular sort, sleep long race, then what it will do, like it will search something like
+this, this is not correct, actually, it will search for some other, like relevant to
+result as well, but unrelevant result also it will provide. But with the VAIS, it will
+be what it will do, it will search for a catalog, based on these things, like for example,
+if you see this particular sentence, so race is basically a catalog, we can say, okay,
+and it will go through this particular sentence. And based on this, whatever result will come,
+it will then re-rank that particular result in terms of the relevance output. So if you see here
+with the retail search, basically you will get all the proper expected results.
+So this is like main difference between the legacy search engines and
+this what XAI search for commerce. So if we go into the, like how what XAI
+search for commerce is working, so basically in like what we need to do is like, we need to
+provide catalog data from for our website, we need to put if we have some event related data,
+that also we need to provide. So basically event is catalog is
+used for a browse purpose and search purpose.
+and this event related data is basically used for the recommendation engine.
+So basically what it will do like there are multiple
+components within that like we need to provide the catalog and catalog data
+and in some cases event data, event means whatever like for example Google analytics event or
+Google tag related events whatever we are working or implementing within the
+website for an e-commerce website, those things we need to provide.
+So what it will do basically it will go to the relevance AIs and then it will
+search for a relevant product and based on relevant scoring or ranking it will provide
+those product in particular order. I will not go deeper into it. There are so many things.
+Can we go a little deeper on that because just I want the previous page you go because
+when we say the search corresponding to, can you open that search result page that it is site?
+This one? No, no, you have shared already search result page.
+Search page measurements and PLP or search before that. I think first a few slides in that.
+This one? Okay, this one. So like when we are searching for short sleeve long dress,
+so this in the traditional search it's taking as a keyword or and in this one
+vertex search how it's manipulating. Like as you said, this will have more relevancy,
+but how technical can you give it? Okay, so let me explain in this way. Like here you
+understood this all these keywords will be processed as a query. Okay, but for this retail
+it will what it will do like we have insight that we like in vertex AI source for commerce,
+there are so many like AI is working. Okay, so one is a relevance AI. So what it will do,
+it will basically check for the catalogs whatever we have provided. Okay, we need to insert some
+catalog data there. So based on that catalog, it will check this query either any of this
+catalog data will match with this particular query or not. So for example, let's say this long
+dress is a catalog within that like within vertex AI source for commerce, then it will search for
+within that catalog, it will search for this particular keyword. And based on that it will
+like with AI, it will just re rank that source result and it will provide you the data.
+Does it make sense? Let me check if there is any slide for this.
+VAIS means it's the name of the VAIS.
+What is AI source?
+So basically through the AI mechanism, it is giving us the proper results.
+So when we are talking about any pipeline, so to work, like whatever work this search
+for commerce is doing, we need to provide some data to this particular surface, okay.
+Some data means we need to provide some catalog data, whatever we have in our website, catalog
+means whatever product list we have right now and the event data, two types of data we can
+provide.
+So when we are talking about the catalog, so basically what is happening, Google has some
+strict schema and we need to follow whatever is like required schema available in Google,
+that we need to follow those patterns, for example, like title, description, price, name,
+ID, type, these are some like mandatory or required parameters for the Google retail engine.
+So what we need to do is like maybe if you go to any website, right.
+So for a particular product, we will have so many like parameters for a particular product.
+Let me show you some example, okay.
+So I hope this is visible for you.
+So if you see this, so these are some required fields, except this one, ID, language code,
+brands, description, then we have title, URL and categories.
+And there are some like, we can also add multiple parameters built on our available fields for
+a particular product.
+So if you can see like sizes, patterns, color info, these are some extra product fields that
+we can add.
+So basically what we need to do is like, we need to define, these are the fixed parameter
+like ID, brands, description and name, title.
+It might be possible in our website, we have different parameter name like instead
+of title, we will have like product title or something like that.
+So what we need to do is like, we need to create a mapping or type of things.
+And with these product fields, and we need to provide our product data in terms of these
+like Google built product fields, okay.
+So by saying this, so basically we need to modify our schema, we need to manipulate website
+product information with the Google provided schema.
+And other if let's say there are some like values which are required and that is empty,
+that also we need to fix.
+So those things basically we need to do somewhere, okay.
+So basically to do these activities, we need to create some type of pipeline.
+So pipeline is basically what all activities we need to perform in terms of providing catalog
+data or event data to the vertex as per commerce or what are like these activities are some
+like in combined called as a pipeline.
+So if you see like
+So we need to retrieve some data from the website, we need to change that data somewhere, we need
+to change those particular attributes or product information with respect to the Google related
+parameters or product fields, then we need to validate those data and then we need
+to like store that data somewhere, maybe in BigQuery or cloud storage and then we need to
+insert within the vertex as for commerce data section. So there are so many steps. So if you
+see what is happening first we are taking some data from the website. So basically we need
+to write some code. So that code we can for that code what we can do is like we
+can use a particular service which is called as like Cloud Run, Cloud Run container or Cloud Run
+function we can write. And after that, like once we will receive that particular information from
+the website, what we can do is like we can trigger some masses to some other jobs. For
+example, after getting a particular information from the website, we need to do some modification
+or validation on that information. So maybe another job will be triggered. So in that case,
+what we need to do is like we can use a popsl service from the Google which will basically
+get the information from somewhere and it will trigger that particular information to
+somewhere else. Am I able to explain this? Like, let me know like if you guys are understanding
+or not. Mukesh. Yeah, sorry, I wasn't meant. So yeah, it's getting related. So that's the way we
+are doing it. You continue. Yeah. So basically, whatever we need anything, any data to insert
+within this retail search, we need to follow some steps and we need to follow those steps. We need
+to use some services from the Google. So it might be a Google Cloud storage, Google Cloud
+Function, or Cloud Run Job. So these things we can use. Okay. This one is clear. Any queries?
+This is a high level flow. So this is exactly what we are.
+Yeah, this is a high level flow. But you know, like you showed me that architecture just
+simulates whatever I am saying with that architecture to insert a particular data,
+like it might be a one time or it might be a periodic data. We need to write some code to
+validate some like gather the data, then we need to trigger that information, then we need to
+validate that particular data. And then we have to like insert that data into the
+vertex as for commerce, correct? Yes, you can relate this thing as a pipeline.
+And in case of the labor, we have the red lettering and reject concept. So that is the add on
+that. Sorry, your voice is too low. So what I am telling like on the top, like when the data is
+not formatted well, in that case, we have another concepts like dead lettering and rejects concept
+where we are accumulating the data and post that after refinement, again, we are pushing
+through the batch processing. Yes. So basically, in that case, we are using PubSub, right?
+Yeah. To acknowledge that data to the particular system, like either these
+validation is correct or not out of validation, it is like correct data or not that we need to
+forward back to the another system, right?
+other system in fact it's going in the table if the data preparation is not done well it will go
+in the reject table so we have from the support side we have to monitor this table if data is
+coming there it means there is an issue right now we have not automated this whole concept
+like how to see the tables and all but if something is happening on the table I mean data
+they will be filled with the round data and then we have to work on this round data to correct and
+request that's what we play okay got it okay that we need to like automate to some mechanism when
+pops up plus we need to write some cloud run for functions and then we can automate that okay so
+now cloud run I think I have already explained this yesterday let me explain you this
+pops up okay so basically when we are talking about the pops up so it is actually a sort
+form of publisher and subscriber okay so whenever you whenever we are talking we have like whenever
+we are sending any messages there must be a receiver or a receiver for that right I will give you
+an example just take an example of this teams okay so whenever we are like doing any whenever we are
+trying to do a conversation with a single person or with multiple person multiple people so what
+we need to do is like we need to create a meeting invite correct we need to add some title okay and
+in this title we need to add some required attendees like we can say subscribers
+so whoever is creating this particular meeting that is actually a publisher
+this ad title is basically a topic this attendees are basically a subscriber okay so what will happen
+like just think about it whenever I want to discuss anything any particular topic with
+a set of people or a single person I need to create some type of topic and I need to invite
+like I need to add those people right and whenever I will go to a particular like I created this
+topic I have like added all the subscribers with this topic then what I will do like I will
+I will basically communicate with the subscriber with like on that particular topic
+uh are you guys getting I'm not so yes hank it did you please explain you know in detail about
+topics here like you know is it is it related to a specific subject or you know a specific
+attribute here are we referring to topic as yeah that's what I was giving this example right
+so topics and yeah topics and each their dedicated destinations yeah so basically
+whenever let's say but like we are doing this gcp related session so you know like
+whatever conversation will be going forward okay that will be related to a particular
+topic which is gcp correct and whoever is added to this particular meeting they will get
+these masses correct now and in terms of publisher so it might be a single publisher
+it might be a multiple publisher who can access this topic to like provide some information
+masses to single or multiple subscribers right yes so if you see a topic a topic okay so maybe in some
+topic
+or in some teams invite, you don't need to define any particular rules, like which type
+of messages we need to provide, what all tasks we need to define for that particular meeting.
+But in some conditions, whenever we are creating any invite, we need to write some description,
+we need to define some points or define some task which needs to be covered within that meeting.
+In terms of PubSum, if you see within that topic, we can also define a particular schema.
+So you can relate with this description or task list with the schema. So whenever a PubSum will
+pass any message, okay, sorry. That's basically a queue system.
+Sorry. You can open that architecture diagram of Google itself, you can find it at Google and
+you can expand from there that will be, I mean, more clear to the audience.
+Yeah, I was just giving the example of teams. So I don't like.
+It's a bit confusing because when you say subject is a topic, it, I mean, yeah.
+We get it, Ankit. So you being the publisher and we all here being the subscriptions.
+So that is clear. And the topic is the topic which you are sending it to us. So we won't
+that is not the topic. That is not the topic. Topic is this Google vertex generic training for
+this is the topic name and whatever I'm communicating with you that is basically a message.
+Okay. Got it. So I'm the publisher. You guys are subscriber. This is the topic.
+And whatever I'm talking, this is basically a message.
+Okay. The message lies within a topic.
+Sorry. The message lies within a topic. Correct?
+Yes. So whenever you send any message to any particular subscriber, so you need to,
+you must have something which can identify on which subject you are talking about.
+Correct? In that way only. Otherwise, what will happen? Let's say there is no topic.
+You are just sending a message to some random subscriber. How that subscriber will
+understand like which topic you are talking about on what things, right? That it's actually
+whenever we are talking about the topic, it's basically a subject through which you are doing
+the conversation. Okay. And when we are talking about the schema, so basically for a particular
+topic, you can define a particular set of schema. Like for example, you are getting some data from
+particular website. Okay. And in that website, you have some like XML file from where you are
+getting the data. Might be there's some title for that particular XML data. There's some
+version for that XML. There's some like source, particular source for that XML file. So
+in a schema, we can define like what is the XML name, the ID, the date, time,
+the source of that XML. So these things we can define within the schema. And whenever a publisher
+will send a message, it will basically capture all this information from that publisher and it
+will provide those information to the subscriber. Got this? Yes. So it's more of a rule set up
+for a configuration. Yes. So let's say schema will have the, yeah, the schema will have
+exact details that it should pull the data or receive the data.
+Yes. It might be a different type of thing. So not only this file details. Okay. So let's say
+in terms of your example, you are getting data from some
+else and you are getting these data like like repeatedly like time-to-time basis
+correct so if in any of the data you will see any like issues or some data
+related issues so how you will figure it out you need some detail of that
+particular file right so through this pop-up schema we are getting all the
+information for that particular file when it was loaded and when it was added to
+the Google Cloud storage then we can figure it out like we can track that
+particular file from which file that particular product come correct yeah
+okay good I am clear with this point so I just wanted to know the overview like how
+the functionality setup like is there a topic which we can you know view and how
+how it is set up or how it is configured for example we spoke about type of
+file xml file and version of it so how does it look do you have any yep I just
+give me a minute I have something but here is recording okay I can't show the
+current one because it's related to some client so this is how this schema will
+look like okay so for example type is record okay this is basically for the
+product information say something like this so we need to add this schema as a
+session format in AVRF format where we have like type record name filing for
+fields so in this field we can add all this parameter name like what is the
+file name date time and version the location everything we can add here and we
+can add this in the Google topics sorry schema so whenever you create any topic
+you will have this use a schema option currently I don't have so when we say
+create a schema it's a database space we are creating more like no not database
+space this is like how we are doing creating a database a schema you are
+talking right space not a schema you can say yeah how we are creating the
+schema in database and at the same type we are creating here so basically we
+are define a particular format of a record so whenever a message will come so
+basically it will provide you the message in that particular format
+Okay, so if I write like file name, file type, then whenever a message will come, so it will come in this particular format, like record, file name as a parameter, and then their value.
+Yeah, I understood that.
+It's a type of the file format or data format.
+Yeah, like whatever parameter you will provide him.
+So the same schema can be used for publish and subscription, both topic and subscription, right?
+No, no, subscription, like a schema cannot be added to the subscription.
+It will always add it to the topic only.
+You are defining the message from the topic itself, right?
+Let's say inside the GCP cloud storage, we have two major placeholder, topic and subscription.
+Yes.
+So topic is something from where from outside or a commerce system, we are getting the data.
+And topic is something which is called like in normal term, you can call as a title, title of something.
+Okay.
+Through that particular title, you are providing masses like from here to there, either publisher to subscriber or you can post that message through that particular topic or you can pull that message from the publisher or subscriber.
+Okay.
+So the topic is the first place where the outside data is landing so that there we need the format.
+So that's what the schema we are creating.
+Yes.
+Now this topic having the subscription.
+So subscription is another placeholder or data base, you can say your file system, you can say whatever this is the file storage in the Google system.
+So there we are not defining the data structure.
+I mean the schema or something like that.
+How it's happening.
+If, okay.
+So if a subscription is attached to a particular topic.
+Okay.
+So you already have that schema, right?
+So it's getting used internally you mean.
+Okay.
+So that's why I was giving this example teams one up.
+So here this is actually topic.
+I think you just said that Google Publisher architecture.
+Google function architecture.
+No, Publisher architecture.
+This Google here.
+Okay.
+The image you can find.
+Okay.
+So now go to this big image.
+This one.
+I think that is not more intuitive.
+This one down that just down that the cylinder is in that one.
+The cylinder is just to open this.
+Okay.
+Cylindrical one.
+Yes.
+This one.
+Right.
+Now beside that.
+Yeah.
+So this is what I think it's a general messaging system concept publisher topic subscription and subscriber.
+So whatever the topic and subscription both are sitting in the Google.
+Yeah.
+So the topic since it's a different place or file system where we need a data from the
+any comer system like a publisher.
+So we are defining schema like how the data should be injected in the topic.
+Okay.
+So the subscription itself.
+So what we were discussing like the schema, the same schema since topic and subscription
+are attached.
+So both will be using the same is something like that.
+Yeah.
+If you see this architecture also.
+So like without topic, there is no subscription.
+Right.
+Okay.
+Okay.
+Topic is fine.
+Yeah.
+subscription without any topic. So in topic it's actually a only a title, it's only a identifier
+you can say. So you can, you can also say it's an intermediate that will redirect the actual
+data to the destination. For example, topic has schemas. So that schema is responsible to
+redirect the data to subscription one, subscription two and subscription three, based on where it lies.
+Actually both are saying the same thing, right. So, okay, let's say this is a medium to do the
+conversation between the publisher and subscriber. Is it fine? Say this Google Cloud architecture.
+So topic is basically connected with a schema and topic is basically connected with publishers and
+subscribers. Okay. And whenever we are creating any subscription, so basically, through one
+subscription, we can either connect with one subscriber or through like another subscription,
+we can correct multiple one. So it might be one to many, many to one, anything is possible here.
+See what it is saying, a named entity that represents a feed of messages. Okay.
+Yeah. And the other confusion.
+No, no.
+It's like, what we're doing both are the file system, subscription and topic. So how the data
+will be sitting one place we have defined second place we have not defined that the region,
+but I feel it's internally, when we are creating a subscription for a topic, it's a
+Google internal background is to get the same structure because the same data will be copied
+there. Okay. I will do one thing. In next session, I will try to create something on PubSub. Okay.
+And how we are passing our masses from either Google Cloud storage or some other services
+and how we are providing that message somewhere else. I will try to solve that particular thing.
+Then I think it will be more easier for you. Okay. Okay. Anything else? I think
+my bad, like laptop battery is going. Okay, then we'll connect tomorrow.
+Thank you. Thank you. Thank you very much. Thank you. Thank you.

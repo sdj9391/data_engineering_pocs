@@ -1,0 +1,413 @@
+those items that we think our customers will like the most,
+will be more interested in.
+And then we also have vision,
+which means we can search using text,
+but we can also give the system image and ask the,
+okay, can you tell me what products in the catalog match
+the ones that you are seeing in that image, right?
+So we're excited for commerce actually,
+because it's not all of these things,
+we can do everything that you see here, right?
+And how does it do it?
+Well, basically we take the product catalog,
+we take any updates to inventory pricing and so on.
+We take user events,
+understand if a user often clicks on a certain type of products
+and they often buy other products,
+understand what their preferences are.
+We take all of that information at intelligent layer,
+let's say, right, to understand what all of that data means
+and how to search for it.
+And then we also put in all of our years
+and years of experience of Google search
+and Google shopping,
+which gave us the knowledge and experience
+to actually know how to do search right
+and how to do it specifically for commerce, for retail, right?
+Because we are, this product is 100% focused on
+is not a general search type of engine or tool
+is very specific for commerce.
+So we take all of that, okay?
+And again, this is valid for search for browse
+for recommendations for everything that we saw.
+And what we get is what we just saw, right?
+Search, nations, image search
+and also conversational search,
+which is a bit more useful.
+This will always be, again, focused on commerce.
+So we want to make sure that our customers
+will see the products that they're looking for
+that they want, that they want to buy.
+And we'll also make sure that the retailer
+is showing the products that the retailer
+wants to see, right?
+So it is very focused
+and we will see this in a bit more detail
+on exactly what products are going to be shown
+to that customer.
+Okay, so if we're talking about searching
+especially in commerce,
+there are two things that we need to keep in mind
+especially one is relevance and the other one is ranking.
+Relevance is what products match the query
+that the customer just did.
+The other one ranking is what order
+should I show those products in?
+Which products should I show first or last, right?
+These two are actually very important
+when doing search for commerce,
+but depending on the type of query,
+they might have different, let's say,
+importance or weights, right?
+If we have, I won't call it retail queries,
+switch our queries which are very specific.
+So for example, if I search for red dress
+with black dots in the size 40,
+their relevance is super important
+because I took something very specific.
+I know there's something in the catalog
+and I'm actually specifying very well
+what it looks like, right?
+So relevance there is really important.
+We want to make sure that we find that dress
+and we show it to the customer right away, right?
+If we have more general questions,
+what we call in ahead queries,
+like for example, a customer might say,
+okay, dress, they're not sure exactly
+what attributes the dress should have,
+but they're searching for a dress.
+Their ranking is really important
+because we might actually get hundreds of results.
+We wanna get hundreds of products in our catalog
+which are dresses and we want to make sure
+that we show first the ones that we know
+that the customer will like, will want to purchase, right?
+So here ranking is really important.
+How we show those hundreds of products
+in what order is super, super important.
+So let's take a look at how we could,
+let's say traditionally search engines
+have done this for commerce
+and they still do in many cases actually,
+but we call our, you know,
+what would be then one search type of engine, right?
+If a customer runs a search or query,
+such as the one that you see here,
+short sleeve long dress,
+let's see how it calculates relevance.
+Well, the thing is that it calculates relevance
+counting words.
+So it takes the words from the query
+and it goes to the catalog
+and tries to find which products contain those words, right?
+This might be logical that it should work.
+In some cases it does,
+but often in many queries it does not
+because if you're just counting words,
+then short sleeve long dress
+will actually give the same results as long sleeve short dress
+and they are two completely different types of dress, right?
+Different length and different sleeves, right?
+So relevance here actually doesn't always work
+with all of the queries.
+There are other ways of doing relevance
+that are much better than this.
+Next, ranking, how do we order those products, right?
+How do we order those dresses?
+In gen one engines,
+what they typically do is that they will
+base ranking on relevance.
+So the most relevant products will be shown first,
+the least relevant will be shown last.
+Again, this...
+might be logical to make sense, but as we will see with Gen2, there are actually many
+other things that we want to take into account for ranking.
+So we'll make sure that we get ranking just right.
+It's very important to know that there are other things.
+Then personalization.
+In Gen1, typically, personalization is absent because we're basing ranking on relevance
+purely.
+There's no way to put in or take into account a customer's preferences.
+They prefer a certain brand.
+They often buy dresses that are from a certain brand.
+There's no way to actually order them by that preference because we're not taking that into
+account.
+All of this, relevance, ranking, no personalization means that we will typically need to do tons
+of manual overrides.
+Manual overrides means that if we know there are queries which are getting the
+wrong products for our customers, we will add rules manually to specify, okay, if
+this query arrives, then you should be showing these types of products.
+As you can imagine, this has several problems.
+One is it requires a lot of time, a lot of effort, and also if you think of it, there's
+no way of knowing absolutely everything that a customer might search for and the different
+ways that it might search for it.
+There are many different ways of saying the same thing.
+So this will be time-consuming and also will not cover all of the possible queries.
+It will not cover all of the possible scenarios.
+As a result, we just get products based purely on relevance and on human-riching rules.
+So we can do better than this, right?
+We can go into Gen 2 engines and see how they work.
+Here you see an example of the query that I was showing to you of a retailer that was
+not using, say I searched for commerce when we took this picture, when we did this
+random search.
+And as you can see in a more visual way, if we run short sleeve, long rest, we will
+get a mix of short sleeve, long rest, short sleeve, long sleeve, long rest.
+It's not really what the customer is looking for, right?
+And we can do better.
+So let's take a look at how we do it in Gen 2.
+Well, in order to do great searches, first we have to have a great catalog, right?
+So that's a first step.
+And how do we improve that catalog?
+Well, here we do many things.
+First of all, we take the images of those products, the photos of those products,
+and we try to extract as much information as possible, which is useful, right,
+for the catalog.
+For example, here, for this dress, we might extract it's a long rest with
+sequins and dark green.
+That gives us a much better description than what we had in the products
+attributes, which you can see on the left.
+Then we also have tons of information coming from our search for Google
+web crawlers.
+So this product is anywhere, you know, referenced, described.
+We will get that information as well, which is related to the product and keep
+that in mind, right?
+Then we also look for anchor text.
+Anchor texts are those texts that someone might write in a blog post and
+link to this product.
+For example, we always use the same example, you know, if someone writes
+a blog post saying the dress that Taylor Swift wore to the Golden
+Globes and links to this product, we will also save that information.
+And it's actually quite useful, because then a customer might search for, you
+know, long rest green sequins and find it, but they can also search for the
+dress that Taylor Swift wore at the Golden Globes, and they'll also get
+this product.
+And as you can see in the query, there's no description of the actual
+dress, no actual goods, but it will still find it, right?
+So we're really helping our customers to find what they are looking for.
+And lastly, we actually check what queries in the retailer lead to
+sales of the items.
+So, you know, with the queries that people are running, then they finally
+click on the item, add it to the cart and purchase it.
+And also the same thing for queries, they are referencing this product,
+right?
+What do people search for to find this product and click on it?
+All of this information is really useful, and we use it to
+erase the catalog to make sure that we are able to do search much
+better, right?
+Okay, so now we have a great catalog.
+How do we do relevance?
+How do we find those products that are relevant to our
+customer's query?
+Well, we have, let's say, two steps to put it in a way, right?
+Two different parts.
+The first one would be understanding the actual query.
+As we saw, we don't want to count words.
+We actually want to understand what those words mean, what the
+query means, what the customer is looking for, right?
+So the first thing we do is we process that query.
+We convert it from unstructured query to an actual structured
+query, which means for the example that we've been using, we
+would say, okay, product is dressed, dress length is long,
+sleeve length is short.
+So that way we understand exactly what that query means.
+We're not mixing up the length of the sleeves with the length
+of the dress or anything like that, right?
+Then what starts to...
+process, to continue the process that way, right? It's our relevance AI. Our relevance
+it will do is it will actually take the different, you know, products from the
+catalog and based on certain criteria, search for the ones which are most
+relevant based on that query that we just saw, right? The models behind
+relevance AI are actually distilled models for commerce specifically. They're
+not, you know, general purpose types of models. They're very, very focused and
+trained on commerce data. So they work really, really well with
+commerce maybe with retail data, right? Okay, so, okay, so how we have our relevance
+AI, we get our 400 most relevant products. That's the result of all of this
+relevance AI processing, right? Once we have our 400 most relevant products, we
+would go into ranking. Before we go into ranking, let's take a deeper look
+into what these two parts consist on, like language AI and relevance AI. Okay, so the
+first part, language AI, there's one thing I didn't mention which is important and
+apart from processing the query and understanding it, we actually can
+translate the query. For example, imagine that we have, you know, we are a
+French retailer. Our catalog is in French. All of our products, descriptions
+and everything actually is in French. But we want our customers to be able
+to search in whatever language they speak, right? But we can do this. It's not a
+problem, right? We have done some improvements, well, actually many
+improvements into that query translation, which we think are really, really
+useful. So now with query translation 2.0, there are certain things that we
+do which we didn't used to do, which get those queries just right when
+translated. One thing is, for example, if I search for Apple in that, you
+know, French retailer, which sells electronics, for example, it will
+understand that Apple here is a brand and it will not translate it to French
+giving me results related to apples, right? So it will basically check if
+the search query contains, you know, keywords that are brands in my
+catalog. It will not automatically translate those because it wouldn't make
+sense in this case, right? Also, if there is, you know, if there are
+words which it detects that correspond to very uncommon languages, you know, very
+rare languages, then it will understand that it's a typo. It's probably not that
+the customer suddenly decided to speak, you know, super strange language. It's
+probably they just didn't write the word correctly, right? And it will make
+the search based on, right? The other thing is that it will take the
+original query, check out the relevant products that it gets, and then get
+the translated query, check out the products that it gets, compare them to
+understand where they get more products or more relevant products in each. So
+this is a query that works. So that's for the actual processing of the
+query and the translation of the query. But we also have relevance, right? As
+mentioned, basically what we do is we have not just one model, we have many
+models here, which work to make sure that we get relevance just right. These
+models are trained on commercial data. They're very focused to get relevance
+just right. There are many things that are, let's say, taken into account when we
+calculate relevance. Like, for example, if we know, you know, through searches
+that every time that someone searches for a lot of grass, they click on
+products that have an actual root that's something like ankle. Then we
+know, okay, that's actually, there's a relation between that search and
+those types of products, right? Also, if someone searches, or typically, when
+people search for short sleeve and they never click on spaghetti strap, you
+know, products that have spaghetti straps, we know that really we shouldn't be
+showing products that have spaghetti straps because those are not really
+quite short sleeve and people are not going to click on them, right? So we
+take into account tons of things to understand the relevance of each
+product for each grade. And that would be part of our models for relevance AI's,
+right? Then we have our AI relevance filtering, which will take all of the
+results from the previous step, do some filtering to make sure that we get the
+most relevant products, the 400 most relevant products. And then we do AI
+relevance scoring. We get a score on relevance to each of those products.
+So we understand how relevant the show them is. And as a result, again, we
+get to the 400 most relevant products as a result here. And then we would go
+on to ranking. We have actually been doing a lot of improvements to the models
+behind the steps that you are seeing here. If you're interested in knowing a
+bit more detail of exactly what those improvements consist of, we have a
+quarterly roadmap call that we have, well, basically a reporter, obviously.
+The last one was in May.
+So I have linked that at the end of the session, at the end of the slides, and you are more
+than welcome to check out that session if you want to go into a bit more detail, the exact
+improvements that we made to these models for relevance.
+Okay, what happens when we move from the original relevance model of county words to our
+actual more powerful relevance engine that we just saw?
+So we moved from what we saw that we would get a mix of long sleeve short sleeve, short
+dress, long sleeve short dress, you know, just not what the user is looking for, to actually
+getting the right products.
+All of the dresses that we're getting here have short sleeve and are long in length,
+right?
+This is just an example, it's a very clear example of how this works, but we have
+more samples of queries that actually don't work well in gen one and work, you know,
+we've made them work perfectly well in gen two.
+For example, if you search for, you know, green cushion with red dots, usually you would get
+a mix of green cushions, red cushions with red dots, green dots, you know, just a mix
+of everything.
+Now we get it just right, you only get green cushions which have red dots.
+There are other examples, for example, as someone's looking for, you know, I want
+a gift for my nine-year-old craft-loving niece, that's kind of a complex question to
+understand, right?
+First you need to understand what that query means, what, you know, a gift for your niece
+means.
+We're not getting the exact attributes of the products that we're searching for,
+we're actually asking for advice of what would be good, what would match what I'm
+looking for, right?
+So this requires that, you know, query understanding, query processing, relevance understanding that
+works really well with these types of grays, and that's why, you know, we get really good
+results with them.
+Here you have a few more examples of grays, but, you know, there are tons of them that
+you can try out.
+Okay, so that's relevance.
+We now have our 400 most relevant products.
+We want to rank them.
+We want to order them and make sure that the customer is seeing the most interesting
+ones, let's say, in the first place, right?
+So we do several things.
+One thing is that we have embeddings that represent the customer's preferences, so they
+prefer a brand, a type of dress, you know, that type of thing, and we take that into
+account for ranking.
+We want to make sure that if a customer always buys dresses of a certain brand, they
+will get that brand in the first, you know, products that they see as a result, right?
+Then we also rank based on several things, for example.
+We rank based on expected revenue.
+This means that we do a, let's say, a calculation of the conversion rate, the product's pricing.
+We calculate what would be the expected revenue, and we order by that value, right?
+Then we also take into account relevance.
+Of course, it's important to understand which products are more relevant than others,
+right?
+To keep that into order.
+But that's not what we base ranking on.
+That's one factor that we take into account for ranking.
+So relevance is one factor, one input factor for ranking, but it's not what decides the
+order of all of the products, okay?
+What decides the order is mainly expected revenue, taking into account relevance,
+and the users are the customer's preferences.
+Okay, so ranking and relevance, we think we got it right in Gen 2.
+Let's see what we get as a result with that.
+Relevance, we just saw how it works with language.ai, with relevance.ai.
+Then we do ranking on those 400 products.
+And then we can apply personalization as we just saw.
+We can make sure that the customer is seeing the results or the products that they are
+most likely to want to buy first, right?
+And also the products that we know that the retailer wants the customer to see first,
+right?
+And then this all means that because these engines work so well that there's no need for
+manual overrides.
+There's no need for manual rules that someone needs to put them by hand.
+In fact, you can add, you can do manual overrides or add rules.
+The system works at its best if there's no human intervention.
+So that's right.
+Everything is done, well, it's basically automatically, right?
+Okay, so in the end what we get is the most relo products.
+Organize in revenue maximizing order.
+Okay, and what are the different options to see or
+what will our customer actually see when they do a query,
+when they run a query against our system?
+And we're talking about your relevance, ranking and so on.
+But what does the customer actually see when they do that, right?
+When they're in e-commerce?
+Well, that actually depends on the type of
+of query that they're running. The good thing about our system is that it adapts to what the
+customer is looking for, to the type of query that they are doing. It will show the information in
+one way or another. And what does this mean? Well, basically, if imagine we take the same
+example as before, you know, a customer is searching for Taylor switch, golden globe dress,
+or, you know, a very specific query like red dress with black dots and size 40,
+something like that. We know that the customers believe we're something very specific. We
+want to show those products right away. So there, our system will decide to use our core search.
+It will show the product right away, so the customer can actually get into the product,
+add it to the cart and purchase it if they want to, right? What happens if the query is much more
+generic than that one? Like if they're searching for dress, but they're not specifying any other
+activities, right? In that case, we want to help the user find exactly what they want to buy.
+We want to guide them a bit in that purchase, right, in that search. For this, we have different
+options. For example, we have dynamic facets, which means that the user, once they click, you know,
+dress, they will see different categories. So for example, you know, color, size,
+and they can select a value for each of the categories to get it just right to what
+they want, right? The other option is that we can show tile navigation,
+which means that the user will see a set of, let's say, like buttons, right?
+Which directly specify a value for each of the categories that we think the customer will be
+most interested in. So instead of having, you know, a ton of categories with, let's say, filters,
+they will directly get a button that says red, size, medium, you know, directly,
+so they can just click on it and get the products right away, let's say, filter, right?
+And then we have a third option, which is helping the customer to filter
+between all of those products that they might be getting for their query
+in a conversational way. So, you know, in this case, for example, for the query dress,
+the system might return, come back and say, okay, what color would you like the dress in?
+And we'll give us options of, you know, red, green, blue, blah, blah, blah.
+This is much more user-friendly than, you know, having to click in different categories
+and buttons. So this is, you know, a different way of helping our customers
+to try to find, you know, narrow down their query and try to find exactly what they
+want. And there is one more pretty big thing that our system can do. It will be out already and
+rolled out by July of this year. And it is conversational commerce, okay?
+With conversational product filtering, we had a one-way conversation. The system would ask us
+questions when we're searching for something. With conversational commerce, what we get is
+a two-way conversation. So the system can ask us questions about our query,
+but we can ask questions to the system as well. So we can do things like, for example,
+can you tell me what wine I should buy if I want to cook fish today? And the system will
+understand what that query means, give us a suggestion, you know, possible wines that might
+match that, and also might ask follow-up questions to make sure that they help us narrow
+down our query of what we're searching for, right? And on top of this, there's even
+one more step, one more improvement or upgrade that we're doing, and we'll be out by late
+two or three, which is that our customer can actually ask questions which are not so
+like related to purchasing a product, but might be related to the product. For example,
+as you see here, you know, can you tell me about the latest iPhone and how can I upgrade it?
+Well, you know, we can allow our customers who want to ask these types of questions and give
+them the information. And then also the visual search against an upgrade, because now not only
+we can, you know, send an image and ask, can you find any products in the catalog that match
+the products in the image? Or we can also ask questions like, okay, can you tell me what shoes
+could match the dress that appears in this image? And it will return a list of shoes that
+would look good with that dress, right? So it's another level of conversation,
+which we think will be really useful and will bring a lot of, you know,
+interesting conversations or interesting purchases to our e-commerce.
+And I think the best way to see this is with a demo.

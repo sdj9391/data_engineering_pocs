@@ -1,0 +1,1490 @@
+started so I'll give a quick intro the next slide but yeah I mean welcome to
+the deep dive session for vertex CI search for commerce I'm assuming there
+has been a previous session where the intro to how what is vertex CI search
+for commerce how it works at a very top level has been done so this is more
+of a I would say 10,000 feet like deep dive we'll try to cover as much as
+possible for you to be able to you know implement things do an AB test and a
+little bit more in this session right yeah a little bit of an intro my name is
+Sreej my colleague Rohan is also there in the call we work in the good Google
+India office and yeah we work with the product team basically you know
+fronting the customer we work with the customer as well to make sure their
+implementation of vertex search for commerce is as smooth as possible any
+trouble-shooting AB test optimizations during of the search results is what we
+work on and this is sort of the very top-level agenda right so we'll we'll
+talk about at a very high level what how vertex CI search works what is the
+data requirements for how to do the data addition you know data quality facets and
+a few other bells and whistles we'll touch upon maybe testing and observability
+which is like I would say an important part of the whole vertex search
+commerce adoption journey and then we'll talk about new features
+conversational search and commerce at the end we'll have a Q&A session but
+please free to drop any questions in the Q&A section yeah I mean to give it more
+intro we are part of the industry solutions team in the PSO and we are
+also of the vertex search onboarding team where we work very closely with the
+product to match all features incubate new features and things like that work
+with really big customers big and small customers we worked on multiple
+customers and we have a 100% win rate on every AP test that we have handled not
+us both there's a vital team so it's all the effort here and currently we're
+looking at engagements on vertex CI search media media as well as generic
+obviously these are newer products with different kind of use cases but
+underlying tech is sort of the same right okay let's start with a very I
+won't be going very deep into how it works but then because you've already had I'm
+assuming you already had a intro of how it works at a high level right but before
+we start there has been multiple name changes for this product it was called
+cloud detail search Google detail search and like discovery solutions and the
+current iteration it's called vertex CI search commerce I hope it doesn't
+change further but again right we'll stick to vertex CI search commerce in
+case I I use retail search or Google search by mistake I am you know I'm all
+meaning vertex is first search for commerce itself right so yeah quickly
+moving ahead so you know what XS search is basically a discovery engine a
+product product discovery engine in e-commerce right it basically is a suite
+of solutions that will help you know you bring the right products for the
+customer right though one suite of solutions is through search and browsing
+but people type a search query and then you get products back you do a
+category page like you go to like you know today's deals and then it gives
+a listing of products and then you know that listing ranking is sort of ordered
+by vertex search right recommendation models there are I think six or seven
+models that is another suite of solutions where it's sort of increasing your
+basket size that you have a mobile phone but then what is the right
+recommended products recommended for you others you may like there are
+multiple models that will sort of increase the basket size give a better
+experience for the for the user yeah so I think the previous session I think
+Juliet may be able to help with that right but I feel we can still go ahead
+you know given the new features of conversational search where we see the
+search maybe because if we are living in a sort of LLM era a lot of the
+The queries are becoming more and more bigger,
+more and more conversational style.
+Even though it's a search bar in the e-commerce,
+people are typing longer queries
+and that's where the conversational search
+is coming into picture where you want,
+it's not just a chatbot,
+it's chatbot leading to a conversion,
+like a product buying decision
+or something like that, right?
+Visual search is something in the roadmap
+where you upload an image and the search results
+will come and be optimized as part of the search listing, right?
+The underlying sort of thing that is common
+across all these suite of solutions is,
+it's not just bringing up products,
+it's optimizing for revenue.
+That means, you know, using vertex search commerce,
+you should be able to make more revenue
+than your existing search, right?
+Obviously there is personalization
+that's there across all these suite of solutions, right?
+At the end of the day,
+you are sort of letting the AI models
+determine what product would appear
+for a search query or a recommendation
+and then how they get ranked
+and it adapts dynamically, right?
+Typically, when I talk about like a search engine,
+it's a text matching engine, right?
+But in case of vertex search,
+it's basically a query intent on,
+it's not just a text engine,
+it's basically a semantic engine
+where it tries to understand the user query
+and then looks at which product matches best for this query
+and how can I order the results
+in a way to generate more revenue, right?
+And why I'm talking about revenue
+is because it's a good measure.
+We can easily measure revenue
+in terms of like revenue per visitor
+and all the other metrics conversion
+and it's a good proxy for user satisfaction, right?
+If you're not surfacing the right results
+for a text query
+or if you're not bringing up the right products
+and recommendations, people are not going to click it.
+People will not buy it.
+So if people are clicking and buying it more,
+it will reflect in your revenue.
+It's sort of a good proxy to measure
+sort of user satisfaction
+and how the search is performing
+and it's sort of easy to measure
+to sort of realize the value
+of the return of investment on vertex search, right?
+Now, how it differs from other solutions?
+Vertex search commerce is not a pre-trained model
+unlike say LLMs, right?
+Because pre-trained and you ask it a question
+it will come back with an answer
+or analysis or whatever, right?
+Obviously there's a lag in other things
+but at the end of the day
+there is no pre-training concept here.
+The model as the models are only instantial
+instantiated once you ingest your data.
+So you need to sort of ingest
+your catalog data and your user events data, right?
+The catalog is basically your title description
+something that defines the product
+and the model reads that
+and then tries to understand what the product is
+build sort of a knowledge graph.
+The user events are basically user buying behavior
+click behavior that is needed to detect trends
+and personalization and everything, right?
+And once these are there
+and they are at a certain threshold
+only then the model will start training
+and then you can start seeing like good search results, right?
+Obviously there's a minimum data threshold
+that is mostly required to have like
+to for us to guarantee like good performance
+of the search results.
+If you don't have this thresholds
+then there's a risk of underfitting
+and everything, right?
+And most importantly the models are not static.
+It's not like you ingest the events once
+and then or the catalog once and then you're done
+because you want the model to adapt to trends.
+The events, the user buying behavior
+the events have to be ingested regularly
+when I say regularly, daily and things like that.
+There's a real time way to ingest
+there's a batch mode to ingest will come to it
+but at the end of the day, you know, you have
+you need to ingest the events daily.
+The model is trained every day, right?
+And because of which we can
+the model can adapt to trends
+and give you personalized results and so on.
+And the user even sort of
+is from the, forms the basis of model training, right?
+And the recent data has more weight
+it is used for evaluation
+when the model training is done and so on.
+If you're entering into an EB test
+all the measurement and everything monitoring
+is done through the user events
+and that's why the user events are sort of
+like a very critical sort of part
+of the whole vertex search commerce solution, right?
+It's important to know that the model is trained
+only on the user events that you feed it.
+The model is
+there's nothing like the model, the vertex search commerce
+looks at your site from externally or something like that.
+So if the user trends that has been detected is only
+from the user events that you're ingesting it,
+it's not looking at social media or any of the other things.
+Now, the question is like, how is vertex search
+generating the revenue lift?
+I'll come to the bottom diagrams first.
+It's more easier to visualize it.
+So in your current search sort of revenue funnel,
+if I can call it, you might not be aware,
+but there are sort of, you can imagine the,
+there are a couple of problems that these problems,
+you can visualize them as sort of revenue leaks, right?
+You're giving non-personnel search results.
+You're not able to bring up products
+for certain queries, so zero search results.
+It's not getting re-ranked dynamically.
+You have to manually configure a lot of rules and so on, right?
+These are basically the leaks, right?
+And using vertex search is basically
+you're sort of fixing those leaks.
+And that's how you're sort of generating the,
+you know, the extra revenue lift, right?
+It's interesting that just by optimizing the search,
+the search engine, making it more efficient,
+being able to understand the user intent
+and things like that, you're just, you know,
+increasing the revenue, right?
+You're just making the whole system more sort of,
+the search system more efficient, right?
+When I say search, I'm talking about the browse
+recommendation as well.
+But yeah, basically these are really hard problems, right?
+Serving results for very long queries
+or difficult queries.
+And this is what traditionally Google, you know,
+has been good at.
+So a lot of the technology is what borrowed from there.
+Knowledge graph, the intent detection and so on.
+And since it's training daily, right?
+The model is able to look at trends
+and then personalize based on your shopping history
+and so on, right?
+And under the hood, it's not a single model, right?
+Although like a search engine can be behind the curtains.
+I mean, for you, it might seem like a single model,
+but there are a collection of models
+that are working together to make sure
+you get the right results and so on, right?
+There is dynamic facets.
+There's a rewriter component which will look at auto synonym
+sort of a sort of a concept and so on, right?
+Obviously the team, the program is making
+continuous updates to these.
+So by adopting vertex search,
+you basically get the benefits of, you know,
+continuously improving features,
+the model quality improvements and so on, right?
+And this all is a managed service.
+So you don't have to worry about scaling.
+You just have to configure the queries per second,
+you know, quota and then you're done.
+You can just like upload.
+You don't have to worry about like Black Friday,
+Saturday, Monday, like I'm getting like
+three times the amount of requests.
+How do I do?
+As long as you set the quota, you should be good.
+Nothing to manage from an infra sort of point of view,
+right?
+There is a few questions.
+I'm not sure if you have to answer now.
+But let me,
+I'll park it for the end just to not enter, right?
+Yeah, I mean, let's talk about what constitutes the data
+and data ingestion in vertex search commerce.
+So typically data is like I mentioned
+the catalog and the user events, right?
+This is strict schema for both of these.
+For the catalog, there is a particular schema
+that is prescribed and for the user events
+there's a particular schema that's prescribed, right?
+It doesn't accept any open schema
+or the schema that you might have in your catalog.
+You will have to write an ETL to, you know,
+convert your catalog or user events into the prescribed
+schema and then you can ingest into vertex search, right?
+This is because, you know, catalog schemas
+are very subjective.
+We can have two fashion e-commerce sites
+selling the same products, but very different schema.
+So it's very subjective.
+The names of the columns could be very, you know,
+different and so on.
+That's why there's a standard schema
+and there's a need to sort of standardize your catalog
+into that schema.
+So typically you need to have sort of two ETLs.
+One is for your catalog and one is for user events, right?
+Again, user events, there are two,
+I would say, subsections.
+One is historic user events to sort of cold start
+the model training as well as your real-time user events,
+right?
+This is for continuous model training,
+evaluation.
+and so on, which happens in the background,
+which is sort of behind the curtains for you, right?
+The most important thing here to notice
+is the model training and the performance of the model
+is very, very sensitive to the data, right?
+If your catalog data or user events data is bad,
+it's missing some information or it's half information
+or it's having ambiguous information
+is gonna affect in the performance, right?
+You have a T-shirt, the picture is red color,
+but the color is mentioned as blue.
+It's not going to, it's going to accept the data
+that you give it and then it will sort of
+reflect in the performance.
+There is no sort of ambiguity detection sort of a thing
+because that thing is very hard, right?
+What we think is something ambiguous may not be
+and so on, so the model doesn't do sort of
+a catalog ambiguity detection.
+It access whatever it is, right?
+And that's why the data quality,
+the correctness of the data is sort of very, very important.
+And you have to sort of map the pure catalog
+or user events to the right fields,
+which I'll come to in a little bit later, right?
+We have multiple ways to detect this data quality.
+There's a data quality dashboard,
+which you can see and it'll actually tell you
+like what check is not satisfied
+and why is this check important?
+How would it affect the model and so on?
+So that's what, and we're obviously continuously
+improving the way we can communicate the data quality
+and make it more cell service,
+but yeah, just wanted to emphasize
+on the data quality part of the model.
+Let's dive deep into the product catalog part, right?
+So the, obviously there is a schema for it.
+I can, we can add the link in the,
+for the schema and documentation
+somewhere in the mail that goes out.
+But yeah, primarily, right?
+It's a hierarchical category catalog.
+There's primary product and a variant product
+and a collection type of product.
+Primary product are more like, you know, a concept.
+Variant is the product that's actually occupying space
+in your warehouse and the actual SK that can be sold.
+For example, there's an iPhone.
+You can have primary as the iPhone,
+the brand is Apple and so on,
+but the variant has actual more details.
+Like it's black color, it's 256 GB
+or it is like $1,000 or whatever, right?
+So this sort of hierarchical classification of product
+needs to be done before in hand
+and then at the time of ingestion and so on, right?
+So these are the, these are sort of the main,
+like one of the ways you have,
+things you have to do before you ingest the catalog
+is sort of structured catalog in a hierarchical format.
+You can have primary only catalogs.
+For example, you know, you can have iPhone black color
+as a primary only product, iPhone red color
+as a primary only product,
+but typically a primary variant structure makes more sense.
+Like you see on the screen, there's a wooden board,
+which is like a primary, but then the actual,
+there are different colors which are listed under it,
+which is sort of the variants, right?
+Collections are typically like things
+that can be bought together.
+Like there's a winter collection set
+and it can have a sweater and a hat
+and a scarf or something that can be bought together
+and they can be bought separately as well.
+So that's specifically meant for, you know,
+a set that you can buy and things like that, right?
+So the taxonomy or the hierarchy of the catalog
+is sort of something that has to be kept in mind before,
+right?
+And coming to the schema, right?
+There is, there are native attributes
+like title, description, color, size and so on.
+And obviously the schema cannot incorporate
+every domain of e-commerce, right?
+There is fashion, pharmacy, you know, electronics and so on.
+The schema cannot incorporate everything.
+So there are things that are common
+and there are things that are left as open-ended,
+which are like custom attributes.
+What we suggest is, you know,
+if something that matches very closely
+to the native attribute, let's say title,
+in your schema, it might be called as product underscore name
+or product underscore title.
+It's better to map it to the native title, you know,
+field in the product structure.
+And then let's say there's an attribute called sleeve length.
+At sleeve length, we don't have a field for that.
+That is something you can do.
+can map it to a custom attribute, right?
+Why is mapping is important?
+It's because the model in the backend,
+it sort of understands the product,
+like how a human would understand, you know,
+the product if it were presented
+in a natural language format, right?
+That's why filling the native fields are more important
+because there's a scoring mechanism
+that reads the directory description
+that makes sense about that product.
+It's different for like native attributes
+versus custom attributes, right?
+So having a high quality native attributes
+really improves the search performance
+and, you know, for even it makes search query,
+search results for like difficult queries, you know,
+work well, right?
+Typically, you know, if the mapping is done right,
+you will not need to add any specific rules,
+merchandising rules to make the search results
+look a particular way.
+The idea is you're offloading all this understanding
+to the model and then the model is actually
+bringing up the right products and all that.
+Obviously, each of these fields has a certain flags,
+like searchable, filtrable, in order to,
+if you want to be able to develop facets on it
+or if you don't want facets on it
+or if you don't want the model to read that text
+or something like that, right?
+The second, like the big part is the user events.
+There are like seven kinds of event.
+For search and browse,
+mostly four kinds of events are needed,
+which is a search, detailed page view,
+add to cart and purchase.
+And for recommendations, yeah,
+there are three other kinds of event,
+which are like home page view,
+category page view and this one more.
+But I'll just be talking more about search and browse,
+but parallels can be drawn
+for the recommendations part as well, right?
+Like I mentioned, user events are trained
+to use for model training beyond relevance
+for re-ranking and trend detection and so on.
+These are important to,
+we call these events as,
+we derive signals from these events,
+which will determine is the product getting more clicks,
+is it getting more purchases and so on, right?
+For example, if you take like a user journey,
+there's a person, visitor N,
+there's a search being done,
+there's a click after that,
+some products got listed on the search,
+there's a click,
+and then that product got added to cart and purchased, right?
+And if I construct a timeline view
+for that particular visitor,
+the model is able to attribute that
+which position of the search results got clicked, right?
+And which position got purchased.
+It knows that if there's in the purchase event,
+if there are other products that were not part of the search,
+it knows that there were some products
+which are added by some other search or recommendations
+or something like that.
+It basically attributes the purchase back to the search,
+and that sort of forms the signals detection
+and optimizing for revenue and so on, right?
+So this is at a very high level,
+how the model attributes things.
+Obviously, it's a little bit more complex than this,
+but this is the attributeability of the events
+is sort of important, right?
+It is not just you have search events
+and detailed page view events and ad to cart events,
+like dump events.
+If the model is not able to draw some kind of timeline
+and derive some trainable data,
+the model is will not use those events
+and it can't be used for model training
+and it can't be used for a lot of things.
+So the data in the events, particularly the visitor ID,
+the product IDs, the timestamp,
+all those becomes important for the model
+to be able to make sense out of those events,
+derive some training data
+and then use it for model training, right?
+This is a very, very high level, you know,
+skeleton architecture, right?
+Obviously, I'll show another diagram
+which is having more details,
+but if you see that there are the main parts
+which is the catalog is sort of ingested, right?
+This part, actually, these two things form together
+from the Vortex Search API
+and you will probably have some kind of a middle layer
+or a search service layer
+which is calling the search API
+and then that search service
+is what your front end is sort of calling, right?
+front-end site, mobile app, whatever it is,
+it's gonna call a search API
+in your hosted search service layer.
+And your search service is gonna call Vortex Search API.
+This is a typical, you know, implementation.
+Obviously the, there are user events generated
+when people click buy and so on.
+Those are sort of ingested back into Vortex Search.
+I'll discuss more on the different methods
+of ingesting data.
+Now, the content crawler part here is basically
+for every product, there's a URL field in the schema, right?
+Which is basically at the detailed page view,
+URL of that product, right?
+Now, why is this important?
+Because it's sort of piggy-packs
+on some of the crawl data from Google.com.
+Obviously Google.com is sort of crawling the entire internet.
+So if your sort of URL has been crawled,
+it will, it has some metadata about your, you know,
+how the URL is or what the details about that product is
+and you get some extra information
+which might not be mentioned
+as part of your product description, right?
+The details, right?
+And that's where the crawler adds
+some extra metadata and so on.
+Right?
+But yeah, this is a very, very high level.
+I'll go into the details a little bit later.
+Now, we'll sort of double click on the different ways
+you can ingest the data into Vortex Search, right?
+Again, this might look complex
+but this is basically representing different parts
+to ingest data, user events or catalog, right?
+Each catalog and user events can be ingested
+in a batch format
+or it can be ingested in a real-time format
+in a real-time sort of way of doing things, right?
+The real-time way for user events is through sort of,
+if you are already using Google Analytics 4,
+there's a way to ingest those in real-time
+but let's say you're storing the data in BQ
+or some on-prem or somewhere,
+you probably have to write some kind of an ETL.
+I'm just representing the ETL as data flow
+but it's, you can use any ETL of your choice.
+You sort of have to do some ETL, stage it in BigQuery
+and then like push it to Vortex Search, right?
+Same thing for catalog.
+You can push updates in real-time to Vortex Search
+or you can sort of do it in batch format,
+stage it somewhere and then like put it, right?
+And that somewhere is basically either BQ
+or in Cloud Search bucket, both options are available
+but yeah, these are the different parts.
+There's no, this is good, that is bad or something.
+It's all trade-off.
+You can, if the batch format works for you, use that.
+If the real-time format works for you,
+like you can use that.
+Every path you see here is sort of a valid path.
+Nothing is sort of preferred over the other, right?
+Typically, there are two flavors of ETL.
+You will have a bulk way of uploading, right?
+Typically for user events,
+those are your historic user events,
+obviously, historic user events
+have to be uploaded in a bulk fashion
+and your one-time load of your catalog, right?
+You have millions of products or thousands of products.
+They will need to ingest it like in a bulk fashion
+for the first time and that's when you will need
+a bulk way of ingesting the user events or catalog
+and post that, right?
+Then you might want to have a real-time way
+of ingesting user events or the catalog as well,
+the catalog updates, but these are recommendations, right?
+These are not requirements.
+If you want to model everything through real-time,
+you can do it.
+If you want to model everything through an import API,
+you can sort of do that way.
+The only recommendation is for your inventory updates,
+which are typically like availability in stock,
+out-of-stock or some price changes,
+it's better to do in real-time
+because you want them to be reflected in the index,
+in the search results in real-time.
+You don't want like something with out-of-stock,
+you don't want it to be updating like half an hour later
+and that's when we strongly recommend to use
+real-time APIs for inventory updates,
+but yeah, I mean, it's totally possible
+to achieve it through import,
+maybe at more frequent imports and things like that,
+bulk imports basically.
+Right?
+Yeah, I mean, this is the different ways of importing
+and just trade-offs, right?
+It's not like bulk is better or streaming APIs are better.
+Each one has its own trade-offs.
+You just...
+is use something that fits your system better.
+Obviously, real time is better, but then it's not a requirement.
+You can optimize it as and when you start adopting it
+or at a later stage.
+The import sources are BigQuery, Glass Storage,
+and Merchant Center, which is a Google Ads thing.
+Again, Merchant Center is mostly meant for a quick update,
+not production grade.
+It is more meant for a quick test sort of a thing.
+And obviously, if you're using Google Analytics or something,
+there's a way to easily ingest it,
+the easily ingest the user events.
+You can have a hybrid approach, but catalog comes as bulk.
+Some updates come in real time that both are possible.
+There's a hand raise.
+I'm not sure.
+OK.
+These are typically the adjacent products
+that are used alongside when implementing
+vertex search commerce.
+If you are a Google Ads customer, Merchant Center,
+again, mostly meant for a quick test,
+Tag Manager for user event collection,
+and Google Analytics.
+For ETL, it's Dataflow, Cloud Storage, BigQuery, PubSub,
+and so on.
+And for third party, typically customers use Adobe Analytics
+or something like that to measure events
+or a source of events and so on.
+There's a hand raise.
+Power to bulk load is happening.
+Is it for API or does it seem to be huge amount of data?
+Yeah, correct.
+So you can typically have millions of products
+or millions of user events in BigQuery.
+And then in your import API, you
+just give the path through the BigQuery wherever the data is.
+And the model, the backend will pull the data directly
+from BigQuery or Google Cloud Storage.
+So that way, you can upload a lot of data
+with a single API call.
+Obviously, it will take its own time to index.
+But there's no restriction on the size of BigQuery
+or something like that.
+It can have a lot of products.
+And you can import it in a single API call.
+I hope I was able to answer the questions.
+Cool.
+Yeah, just switching to the dashboard.
+Obviously, whatever I mentioned regarding the ingestion,
+it can be observed in the dashboard.
+There's a vertex AI search, I think
+it's called Search for Commerce in the Google GCP dashboard.
+So there are multiple dashboards
+specifically for data ingestion.
+You can view it.
+You can see the catalog, what's the current state,
+what are the different sort of import jobs
+that are running, same thing for user events.
+And the dashboard doesn't update in super real time,
+but it's quite close.
+But it's a good quick check to understand
+what's the state of your ingestion,
+what's the state of your catalog, and so on.
+This is for the user events, sorry, catalog.
+And again, this is for the user events.
+You can actually see over time what
+is the volume of different user events
+that were ingested and so on.
+Again, there are indicators which
+will tell what is the percentage of unjoined events
+and so on.
+Unjoined events is basically every event
+needs to have a product ID because it
+should signify that if a click happened,
+for which product the click happened.
+But if a product ID is sort of corrupted
+or if you have not ingested that product,
+but your user event is mentioning that product,
+there's a joint process which will try to read that event
+and you try to see which product it's referring to.
+That joint process will sort of fail
+and then that will show up as unjoined events.
+Basically that event cannot be used for model training
+because the model doesn't know which product
+you are talking about.
+These are expected to be like low, close to zero,
+but all these indicators are available in the dashboard.
+There is a more, I would say, in-depth architecture
+or a back-end view of how things get integrated.
+In the top left side, you see the catalog part
+where probably the source system is something
+non-Google or something like that.
+There is sort of ETL jobs on data flow written to sort of ingest the data into vertex search, right?
+This diagram is also sort of a three-way AB test.
+If you see there is elastic client, there is solar search as well as vertex search.
+So it's sort of a three-way AB test.
+And if you see the data, the catalog updates are being indexed to all the three, you know, a search system simultaneously.
+And this is how you have to sort of set it up for an AB test.
+The user events part here is the Adobe Analytics.
+Here the Adobe Analytics is the source of user events.
+And again, it's being dumped to BigQuery if you can see at the bottom.
+And there is some sort of ETL that is like transforming it into the schema that's required for vertex search and is being ingested into retail search.
+If you come to the search service part, obviously this is sort of representing the front end.
+And, you know, when a search is being made, depending on, you know, it will hit your sort of search service back end.
+And depending on the AB test configuration, the search is either going to your elastic solar or like, you know, a vertex search, right?
+And this is like a good setup to sort of measure, you know, conduct an AB test and measure, you know, with search, which, you know, Lane is performing well and so on, right?
+So yeah, this is a more in-depth architecture, more realistic architecture compared to the skeleton one that I've shown before.
+The main idea here is the catalog is being updated continuously and this is using a completely backed system to update all the catalog things.
+Same thing for user events, everything is updated in a batch format.
+The only trade-off here is you're operating in a batch, so your ability to measure in real time is not there.
+So you have a slightly delayed measurement and so on.
+If this were all real-time, obviously you'll have a more real-time, but it may, you know, you may have to do an extra infra work to convert things into real-time.
+But this is a very perfectly valid setup as far as vertex search is concerned, right?
+Yeah, I'll just hand over to Rohan to go through the next topic.
+So Rohan, do you want to share your screen?
+Yeah, I'll share my screen.
+Stop share, yeah.
+Is my screen visible?
+Yeah, just want to take two minutes.
+If there's any questions that is really bothering someone, I'll just keep two minutes.
+Pause.
+There are some questions in the Q&A if you want to take a look.
+Yeah, how do we see that?
+Is it in the chat?
+It's the Q&A functionality.
+If not, I can read you the questions.
+Yeah, let me.
+Yeah, I can see the Q&A.
+So I think there are three questions.
+When you say the model is trained every day, it still will be constrained as a fine-tuning or a base model, right?
+Yeah, I mean, I don't think you can draw parallels to this for LLM.
+LLMs are completely different.
+This is a very specific model, set of models that are specifically meant for e-commerce, right?
+So there is a cold start training of the model based on historical events,
+and the model is not just fine-tuning or something.
+So the model is looking at the previous 30 days or 60 days of events,
+and then, again, looking at which product is performing well, what should I update my rankings and so on.
+So the parallels to LLM is, I would say, a little misleading.
+It's a custom model that's there, right?
+What is the limit of the amount of user events being used to train the models?
+I'm asking because I'm curious if I could expect model to also take in weekly, monthly, yearly recurring events, right?
+So there's no limit to the amount of user events.
+We have customers uploading hundreds of millions of events and so on.
+But the model looks at previous 30 to 90 days.
+If you have enough e-commerce,
+events. It looked at the last 30 days. I mean, we have lesser
+number of events. It looked at like more like 90 days, right?
+So today is like say June 18th, right? So it will look at the
+past 30 days, let's say June 18th till May 18th data to train
+the model. Tomorrow is June 19th. So it'll take data from
+June 19th to May 19th. And then we'll try on that, right?
+So it's it takes a window of events as and when the day
+progresses. But there's no limitation on it'll only
+consider 10 million events, right? How much are in the
+events are there in that window? It'll be used for model
+training, right? And typically, if you have like older events,
+you can still ingest it. But, you know, the model will
+adapt or there's more weight on the recent set of events. And
+then that should be good enough for like trend or
+seasonality adaptation. None of the collection of models
+is pre trained. Yeah, I mean, there is a small relevancy model,
+which is which knows which product is relevant for certain
+search queries. But that's a very small part of it. A big part
+of the model training is based on user user events, which is
+which is sort of trained based on the events you ingest.
+The only the relevancy part is a little I would say the
+retaining part of it. Are there any limits on the number of
+customer attributes? There is a limit I can share you and I can
+share with you later. But there is a limit to a lot of things
+in the catalog, it should be good enough, big enough for
+most of the use cases. It's in the documentation, we can
+share it later. Can I elaborate more on how the
+infrastructure can be live? The cost increase in
+capability, there's a separate pricing sheet. I can share
+with you Larry said $2.5 per 1000 search API calls. I'm not
+really sure what the infrastructure can be live. It's
+basically a SAS. So you don't have to do anything apart
+from setting the QPS. So I'll end now we can talk about
+this later. Just wanted to address the questions from my
+sections before I hand over to like Rohan, right?
+Yeah, Rohan, go ahead.
+Hey, thanks Sherish and hello everyone. So this is Rohan, I
+work with in this situation similar to what Sherish does
+and we both have been part of the onboarding team from
+like almost a couple of hours, a couple of years. So wing
+ahead. I know that there were many questions related to
+what is my quality of data or how many number of
+events were required to say that is my model train or
+not, right? So to look into this, the correct place is
+the data called dashboard, right? So in the vertex as
+search for commerce, there is a tab which says data
+quality. And you would see that there are four tiers for
+search and three tiers of browse, right? Now, better
+like the higher the tier better the results would be. And
+we need to always target to get into the tier four
+that's the idle scenario, right? Now, the first thing is
+let's understand what this tiers really mean and then why
+we really for enforce the customers that use to start
+an A, B test at tier three, right? So the first year is
+a relevance tier, right? So as the name suggests that
+this tier is only looking at the relevancy of the
+query that it doesn't take into consideration about is
+there a probability of the customer clicking it or not
+or if there is an engagement that might happen or not, right?
+It's purely looking the relevancy of the query that
+was being given to us, right? So for instance, someone
+searches for a sunscreen, right? In that case, the
+results that you are going to get back would be
+something related to sunscreen. It might be lotions, it
+might be sunscreen, but again, you wouldn't be able
+to guarantee that those ranking of the products that
+you see on your screen would be something that
+really makes sense, right? So it could be the case where
+lotions are at the top and some of the sunscreens at the bottom,
+right? So it's purely at this point we are trying to ensure
+that whatever the customer is asking for, we're returning
+back. We are not focusing on the rankings at this point
+of time. Moving on, it's tier two. Now in tier two, we
+add some form of engagement things where in like, how
+popular the product is or how well the product is getting
+sold or how the probabilities of this product getting
+clicked, right? So we dig into consideration some
+popularity signals for every product and then arrange them
+in a particular order, right? So it's better than a tier
+one, but still, we are only considering the popularity
+of the products and not considering the revenue
+So, here we are only looking at particularly from the way where if a product is going to
+click more, it has a probability of getting clicked more and let's put it at the top.
+So, you will see results in tier 2.
+Now, if you go to tier 3, this is where the user events come into play.
+So, when we see on a dashboard that it says you are in tier 3, it means you
+have a re-ranked model which is trained.
+So, you have enough events that have been submitted to us which has trained the model and now we
+are ready to serve you on the re-ranked basis.
+This is where you will see, we also take into consideration the revenue optimization.
+So, for every customer, the base is like we want to increase the revenue.
+In that case, we consider that, okay, now this are the list of products that I have
+been, I have been returned.
+Now, let's rearrange them in a way which will optimize my revenue or increase the revenue.
+So, we have just trying to show that there are two products, a product one and product two.
+In product one, the popularity of the product one was 80% and product two was 78%.
+But if you see from the revenue perspective, it's better to show the product one instead
+of product two.
+So, we can arrange the products up and down but just not considering the popularity but
+also considering the revenue which is better and which is good to show.
+So, this is where ideally you will see that we recommend the customers to start an AB test.
+You should not start an AB test on tier two because it's not going to give you
+the key key API metrics like to be getting into the statistics.
+Rather, it could be something that we're trying to give you the relevance and popularity
+signals at this point of time.
+So, tier three is a place where we should start an AB test.
+Tier four is usually when you start serving or start using the
+vertex search for commerce and then you get the live APIs.
+So, this is particularly in place when customer starts consuming the APIs.
+So, before starting, before going into the consumption part, you can still be in a tier
+three but after going into consumption part, we can go into tier four.
+So, this covers the data quality dashboard reading.
+So, we have similar type for browse but you can read it in a similar way.
+Only the difference is that there are tiers in browse and we have four in search.
+Now, that's one of the questions which was asked regarding what is the number of
+minimum events that is being required to train the model.
+So, that is a documentation which says which revenue or what is the number of
+minimum number of events that is required to be uploaded for a model to train.
+Right? But that's a, I would say like a star mark or a caution thing that
+the event should be an attributed event.
+So, if you remember, Suresh was mentioning that the quality of the event also does matter.
+It's not as if like we just need the volume.
+We also need a good quality of events.
+So, at times, we have seen, let's say we have seen an example where we see
+on the timeline the purchase event occurring before a back to cart or a click event, right?
+Practically, this is not possible but we are getting this events in this order, right?
+So, it means there is something wrong in the user event uploading part or the collection part.
+So, we discard those events but usually then the customers come back saying that,
+hey, I've uploaded 200k events but your dashboard says it's only 100k that are
+like that I'm making to the data on dashboard, right?
+The reason being, there is some issue in your events up to or there are some issues
+related to the quality of the events.
+So, they're not able to make it to the actual model, right?
+As long as you are able to give us the correct quality of data or the correct quality of the
+events, your dashboard will actually take all the or your model will take all the events
+that are uploading, right?
+If there are any problems, we won't consider those events in the model quality, right?
+So, this kind of covers the requirements or the minimum thresholds.
+We do have an option to reduce the thresholds at times for specific reasons
+but we highly recommend not going via that route because it will impact directly impact your
+the quality of the model, right?
+But if the customer is too small and takes ages for him to reach that thresholds,
+then yeah, it's a separate process that we can
+raise support case and then discuss with them about why we're trying to reduce the threshold.
+But again, it's not recommended but there is an option.
+and to go by that route.
+Coming to the next topic about serving controls, right?
+Now, we discussed about the catalog
+and different user events that we are getting, right?
+But there are certain business rules that we want to,
+let's just serve during our A, B test,
+or the customer has certain business rules
+which they want to add into their website, right?
+So let's say I have a business rule
+that I want to only show
+out of stock products at the bottom of the list
+and only in stock products at the top, right?
+So there could be different ways to solve this,
+but one of the ways could be like
+applying a boost rule, right?
+Which will take all your in stock products
+into the concentration, apply a boost
+and then push back all the out of stock products, right?
+So to kind of get into certain kind of rules, right?
+Or you want to arrange a product in certain way
+to get your business needs solved,
+you can use the serving controls, right?
+So there are different serving controls.
+One could be like applying a boost worry
+or there are redirect controls,
+wherein let's say someone types in a query as help.
+Now, you don't want the vertex as yours for commerce
+actually going in your product catalog
+and searching for help and getting you back the products.
+Rather, you want to redirect it to a certain page
+which says, okay, this is the help page
+where you can get the information about the company
+or how to reach out to you guys, right?
+So there are redirect rules which will help you in this case.
+And there's a replacement rule where
+you want to replace a keyword with something else
+while making a search call
+so that the vertex as ours or commerce
+search in a particular way, right?
+So different rules have different usability
+or as per the business need or whatever the requirement is,
+we can use that, right?
+We can also add a start date and end date
+for a particular rule.
+So it's not something like
+we have to actually disable and enable it manually.
+You can give a time range that, okay,
+that's a sale product coming on.
+I need to post all the products
+which are tagged as sale during this time range.
+And then after the time range finishes,
+then just go back to the place where it started with,
+right?
+So before the sale period.
+So we can also apply a time range
+which will say that, okay,
+apply this rule only for this particular time range
+and not beyond that, right?
+So this reduces the, I would say the admin part
+where the someone has to go back and say that, okay,
+I'm not to disable this rule, right?
+So the product will itself take care of it
+and apply the rules, right?
+By the way, we can create multiple serving controls
+at a time.
+So let's say you want to do a check about
+if Vortex Asserts for commerce is returning products better
+without using a boost
+or is my boost giving you better results, right?
+So you can actually do an internal like ABTAS variant.
+You serve certain traffic with one serving config
+and then you serve certain traffic
+with different serving config, right?
+So even you can pilot option out,
+but it's again, for a longer run
+when you are actually a hundred personal life
+on Vortex Asserts for commerce
+and then you start making more plan errors
+and try to find out which is the correct place
+for you to use the rules, right?
+So overall we have this option always to use it, right?
+Coming to the other topic is facets.
+So typically facets is a term which we use technically
+for Vortex Asserts for commerce
+but you can imagine facets as a filters
+on a like e-commerce website.
+So filters are one of the place where
+let's say customer wants to,
+he has started with a very broad or a broader query, right?
+Like let's say I want to start with a t-shirt, right?
+But I have not specified that
+whether I want a like a black color t-shirt,
+I want a long sleeves t-shirt
+or some men and women t-shirt, right?
+So it could be anything, right?
+So this is where the facets come into play
+and customers start interacting the facets
+and then understand, okay, this is the other list
+of products that I want to see
+and then like go towards the formal journey
+and then purchase a product, right?
+Typically there are two ways you can get the facets
+back from the Vortex Asserts for commerce.
+One is like you can use the normal facets
+or the static facets, which we call
+wherein you ask the product to return back those facets, right?
+Or there's a second option where you save the dynamic facets
+which is a AI-based facets, right?
+So
+There is a model which will learn from your user events
+typically from the filter data
+that for this particular query,
+which are the filters which are being used a lot in the past
+and then I can only show those facets on your website.
+So many times it could be the case like let's say for a t-shirt,
+maybe brand is important to show on the custom website,
+but the interaction is very low.
+And like this price is more important than the brand, right?
+So what we do is we can rearrange those facets up and down
+or we can decide which facets are really important
+for a customer to show for a particular query.
+That's you completely give a control to AI to say that,
+okay, for this particular query,
+this are the important list of facets that you need to show.
+So this requires a bit of work on your website or UI
+wherein you accept the facet
+which is could be a dynamic in number, right?
+Like because at for a particular you could have 10 facets,
+but for other query you can have five facets, right?
+So number of facets can change,
+but then it helps to maintain the interaction
+in a bit of smooth way, right?
+Now, there's a third way where you can use
+both of them, right?
+So you can say that, okay, I need dynamic facets
+as well as I need some facets
+which are no matter whether AI thinks or not,
+but I need those on my website, right?
+So you can use a combination of both
+wherein you can tell the product to return back
+list of static facets
+and then you can append all the dynamic facets at the end,
+right?
+So even that's an option where you can use
+a combination of both and then ensure that
+you have the linear facet
+that you want to show the customer
+and then let the AI decide, okay,
+which facets are better for the query, right?
+So this is kind of like different options
+where you can play with facets, like,
+but remember like for dynamic facets
+we require the events with filter data available,
+otherwise the model won't be able to track, right?
+So there is next part which says like query expansion, right?
+So many times we hear back from the customer
+that your existing solution,
+the pain point is that number of results returned
+are zero for many queries, right?
+Or many times it's like the existing solution
+is not able to return back responses of products
+or some of the queries which are not exactly
+what the catalog has, but very similar to it, right?
+So one of the examples I can give is like,
+let's say there's a product catalog
+which has mobile charges and mobile covers,
+but they don't say mobile,
+they don't like sell mobiles on the website, right?
+But if I go on the website and I say,
+I just type in mobile or cell phone, right?
+In that case, the expectation is that
+you should still show them the results back
+related to mobile which are like mobile chargers
+and the mobile covers, right?
+But at times it happens it doesn't return product back
+because there's nothing that is actually a mobile,
+but their access is related to mobile, right?
+This is where query expansion can help you,
+wherein if or whatever the query has been asked
+and we are not able to return the products back,
+there is a small like AI part wherein it tries
+to loosen the relevancy and then it tries
+to search in different directions, right?
+So in this case, what is going to happen is
+let's say I search for a query mobile,
+my initial AI says that, okay,
+there are no results for mobile.
+Then we will say, okay, there are no results,
+then let's like loosen the relevance score, right?
+Then it will search for, do we have mobile covers,
+mobile chargers, mobile accessories?
+Yes, let's return those products back on the API, right?
+So we can set in a threshold layer wherein
+when we want to enable the query expansion.
+So you can say that if the number of results
+are less than five, you can expand the query
+or if you want to be less than three,
+you can expand the query at that point.
+So it's completely like a controllable field
+where you can either disable the query expansion,
+which is not kind of advisable, I would say,
+but if you want to enable it,
+but you want to reduce threshold, right?
+So let's say no matter what,
+if the number of results are less than three,
+I want to expand the query,
+then you can use the query expansion feature in that way.
+So you just have to raise a request to us
+and say that can change the threshold to five or three, right?
+So, but overall, the reason we have this query expansion
+is to reduce the number of results,
+which returns zero results
+and rather serve the customer.
+with something back so that if we are able to get
+to convert the customer in that way, it helps out.
+Now, coming to the part of the ender thing.
+So we start an engagement to come to this point
+where we do an AB test, right?
+So this is where we all want to ensure
+that the product is working as intended
+and we want to prove the mentor of the product, right?
+So most of the time, what we do is we start with
+the evaluation tab, right?
+So wherein we can type in certain important queries
+and see how the results are coming up, right?
+So let's say you are in tier three
+and I have the top 10 queries on my website.
+I just need to see, okay, how are the products
+getting returned?
+So if I type in white t-shirt,
+whether I'm getting white t-shirt
+or is the product returning back,
+let's say black t-shirts at the top, right?
+So definitely there is something wrong on our side,
+but it's a good way to ensure
+that the setup is correct in a way.
+It won't give you the measurement numbers
+at this point of time,
+but at least it gives you confidence
+that whatever queries I'm typing in,
+I'm getting the results back, right?
+It's not something that typing for a t-shirt
+doesn't give you t-shirt, but something else, right?
+So it's the first step,
+I would say like a first small step towards
+ensuring that the product integration part is done
+and the kind of high-level evaluation looks correct, right?
+The other part is like you,
+if you want to use the REST APIs, right?
+The easiest way would be like just go to documentation,
+there's a try this method tab,
+which helps you to try the different APIs
+and then execute it, right?
+So it will kind of give you a sense about, okay,
+how do I set, like how do I use the REST APIs
+with different configurations
+and what is the response I get back, right?
+Because in the evaluate tab, it's more of a UI,
+but in the REST API, you can actually test it out, okay?
+If I add a query expansion, what happens?
+If I add this serving config,
+what is the outcome of this, right?
+So you can try this method on the REST API part,
+but when it comes to the actual evaluation,
+then we suggest and let's get into the AP test phase,
+right, where we split the traffic,
+we actually monitor it by KPI by KPI,
+we do it on the live traffic
+and then measure the performance, right?
+So these are different ways we can start with, but yeah,
+eventually we want to go towards the AP test
+where we start detection measurements, right?
+Now, one of the key discussions during the AP test
+is we need to also understand
+from the customer perspective,
+what is the important or key KPI metrics, right?
+We always, by default,
+keep the key KPI metrics for the model
+as the revenue optimized,
+but there's also a way we can say, okay,
+I'm not looking for revenue,
+but I'm looking for more of a conversion rate, right?
+For some reasons, right?
+Or I want my clicks to be going up.
+I'm not really worried about the conversion
+so the revenue, right?
+So we need to first understand from the customer,
+what is their engagement metrics?
+What is their business metrics?
+What are they looking for from this product, right?
+We don't want to get into a situation
+where we are optimizing on the revenue,
+but they are actually looking us to improve
+the conversion rates or clicks overall, right?
+So we'll be getting compared to something
+which is not we are optimizing for, right?
+So it's always good to have a discussion
+with the product team or the partner team
+to understand, okay, what is your key KPI metrics?
+And then we can adjust your optimization method
+accordingly if it's not arriving.
+So one of the, like, just for instance,
+click through rate is one of the engagement metrics, right?
+So where in, as I mentioned, right,
+you want to just optimize on clicks,
+but if the conversion rate is another engagement metrics,
+then we can optimize it for see, like, the convergence part.
+The second half of this thing is, like,
+we also need to understand
+how the customer went to evaluate this, right?
+Is it going to be on the sessions level?
+Are it going to be visitor level?
+Is it going to be on the search level?
+So whatever are the methodologies
+or the metrics they're going to use,
+you also need to get a bind, right?
+So because eventually we are just trying
+to use the same data, but we're kind of cutting
+and drilling down in a different way, right?
+So maybe like the events that we're getting,
+we are looking at the search level,
+but you're looking at divisive level, right?
+The numbers might look very different,
+but again, it's the same data
+that we are trying to make a story about, right?
+So how do we, or how we recommend
+the customer should start?
+We always recommend a customer to not start with directly 30% traffic, like we suggest
+them doing a traffic ramp, right?
+So when I say traffic ramp, it's like start with a smaller percentage of traffic.
+Go with let's say 1% or 5% of traffic for a few days.
+Understand if there are any nuances that we have not figured out till this point
+or if there are any issues which we see are obvious and missed out, let's fix
+those and then go to the largest step of FTFT, right?
+It's advisable because it might delay you for a bit by a day or so, but again, it's very
+important that we start at the correct point, right?
+Because there are things which you may not predict or know before we start an A-B test.
+For example, if there's an issue with splitting the traffic, right?
+We would never know this before we start an A-B test, right?
+So it's always better that we start with a smaller percentage of traffic and then slowly
+we ramp up the way the confidence levels grow, right?
+So let's say we see that on 10% traffic, the performance is really good.
+Then let's ramp to the higher percentage or if we see that performance is not good,
+then let's stop here and see, okay, what has gone wrong?
+Is there something a setup issue or we need to check something else?
+Let's stop here instead of just going to a pre-flow of 50% and then comparing the results, right?
+We're just trying to reduce the impact overall on the customer's revenue as well because we don't
+want to say that because setup was not correct, you made a loss of x% right?
+In terms of measurements, there are tools available in the market for measuring the A-B test,
+but we also recommend more of using GA4 or equal to measure the metrics because
+at times, data that we are getting from GA4 or let's say we are getting data from GA4,
+it's useful that we also, like the business also considers that data to repair the dashboard side.
+Otherwise, the source of data changes, then it could be a case where
+I'm looking at something else versus what you're looking at is something else, right?
+So we recommend using GA4 as a good tool to start business metrics,
+but yeah, it's not something that we enforce, but always good to at least know what the things are
+or how things are looking at if we use a GA4 versus the other party tools, right?
+These are some of the high-level challenges that we have been seeing over the years about A-B test,
+right? So maybe like as I mentioned, right? So the traffic split is not aligned, maybe
+one of the lanes are only getting new users and the other lanes are getting more of a
+repeated users. This could be one of the reasons why the performance is not that great or
+there's a lane switching wherein customer starts with one lane or one side of the traffic and
+then ends up on the other side, right? It could be one of the other reasons where we're not able to
+evaluate correctly. Then it could be something related to missing tokens, right? Which is kind of
+a very popular thing that we see in most of the customers that the token is not
+configured correctly or the token is missing on our side. The prices are not correct or
+as Shirish mentioned earlier, right? Like the importance of having price is in real time
+with that. There's a chance where the updates on price on our side or the CRS side is slower than
+on the other side of things, right? So the same product which is shown for $30 on
+control lane might be shown as $45 on our side. So what always people might not buy it.
+It's also important that we have a very similar UX for both the things. We don't want to
+say the result of the test was outside of something which we're not able to handle, right? So for instance,
+you are having an additional feature for control lane, but you don't have that same UX feature
+on the Google lane. Then we don't know if the devin that was coming for the control lane was
+because of this feature or it was purely because the control lane was performing better than the
+Google lane, right? So it creates kind of a noise which we kind of ask the team not to
+like start any bit as if the UX are not same. We want to major Apple to Apple and not something
+which we know there is a side change and differences in the UX and it might have a
+different user behavior, right? So these are just high level issues that we have listed,
+but there could be something more than that, right? So it's something that we may not have
+been encounter till now, but this is like one of the top issues that we
+have been encountered in the past.
+So these issues, which we see, can only be traced
+once we start the traffic.
+That's the reason I say it's always
+recommended that we start with small traffic or small percentage
+and then move to higher percentage
+once we know that everything looks clean and green.
+Now, coming to the observatory part of the monitoring
+part of the data that have been uploaded
+or has been ingested on the vertex search or commerce.
+So we have this monitoring dashboard,
+which is integrated in our tool or in the GCP console,
+which shows that whatever the user events that have been
+uploaded, were all of them correct?
+Like were there any issues in the uploading
+on the user events or the product catalog?
+So as you can see in the screenshot,
+the customer was trying to upload the user events out
+of which there were almost 1,500 events which
+were dropped out.
+And there was some issue to add user events.
+So that's a small kind of, I would say,
+a small summary of the issue being given,
+I would say the unjoined with catalog user events
+product details.
+So it's very, I was not easily human readable,
+but it gives you a kind of a highlight over why
+this issue has occurred.
+Now, if I go to the next part where
+we see about cloud logging.
+So in this case, what happens is you get a detailed analysis
+about, OK, this user event was failing
+because we had an unjoined event.
+So as Shivish mentioned, unjoined event
+is where we are not able to find that product in the catalog.
+So it either suggests that as a problem in collecting
+this user event, where the product ID was not completely
+corrected or it was corrupted, or we
+don't have that product in the catalog.
+That could be something else like you're
+missing what the visitor ID is in the uploading
+of the user events.
+So visitor ID is kind of a required fields for us
+in the user events.
+So if visitor ID itself is missing,
+then we cannot upload that user event.
+So cloud logging is a place where
+you can get the detailed analysis about why the user events
+have failed or what is the issue behind failure
+of this user events.
+Now, this is kind of a high level implementation phase
+that we draw.
+These are different phases that we
+see how we progress through.
+So as I said, phase zero is where
+you kind of start and kick off or you start planning
+and stuff and things.
+Phase one is where you do a kick off with the team
+and then you understand, OK, what are the requirements
+or what are things that we need to require
+from the customer or the onboarding team
+or, let's say, from the retail search as a product.
+And we understand those requirements.
+In phase two, once the requirements are clear,
+like, OK, from the vertex as a search product side,
+we require the product catalog and the user events.
+From the customer side, these are the additional list
+of business rows that we require.
+Let's go ahead.
+In phase two, we kind of start the integration.
+So this is where the foundation is being created.
+So you say that, OK, my user events
+are going through correctly.
+My business rules are defined.
+I have creator serving configs or serving controls
+that are required for my business rules.
+I define what is my key KKM matrix,
+where, OK, for me, the conversion
+is more important than the revenue
+or the click is more important than the revenue.
+We set those things right.
+So phase two is where you do the most of the groundwork,
+and then you move ahead for phase three,
+where it's more of an integration with the front end.
+This is a place where you start consuming the responses
+from the API into the front end
+and how you integrate them.
+So let's say you have pre-producing dynamic facets
+or you want to use the auto compute functionality.
+So you start seeing that and start adding that in the UI
+so that you can integrate on the front end side.
+Phase four is where you're going to experiment and evaluate.
+So in this case, what we're going to do
+is we start an experiment.
+We measure the performance.
+We understand, OK, if there are dependencies,
+if there are any issues, let's correct those
+and then re-evaluate.
+So it's kind of an, I would say,
+a cycle where unless and until we
+feel the experiment was correct and evaluation was correct
+and everything looks like both parties are happy,
+we move ahead and then move to the project loger.
+So this is a high-level diagram.
+We're just trying to say that.
+like, okay, you should move in this way.
+But phase four does not show the diagram
+that it might require multiple iterations, right?
+So you might see that, okay,
+this time I've started with an, without serving conflict
+and I start with serving conflict as a next test
+or I want to do an ABC test where one lane of Google
+is with redirects, one lane is without redirects
+and the third lane is controlling, right?
+So you can have this multiple iterations
+and come to conclusion that, okay,
+I am happy with my output of the observations
+and then move ahead, right?
+So I think this covers the overall data quality
+or the monitoring side of the things.
+We briefly wanted to also discuss about the new feature
+which was recently live about conversational search
+and commerce, right?
+By the way, like commerce is yet to be GA
+but the commercial filtering is GA, right?
+So the need of this, like, you can understand that
+nowadays the way the searches have moved is like,
+those are not ways similar, like a simple search, right?
+People don't search for size 36 UK, right?
+But rather they are running into questions, right?
+So the way we search have now changed
+from simple text search to a question-based search, right?
+So you want to understand from the AI
+that what fits best for me
+and not what is best on that catalog, right?
+So it can be very personalized as well, right?
+So we have just kind of showing some of the examples
+where best airports maybe have been a query earlier,
+but now which airports are the best
+are, as is now what people prefer and search for, right?
+So the entire, like the base here is that
+we're trying to come or the way the search has now evolved
+is like it has become more complex,
+where in we try to search multiple things in one query, right?
+I would say like, okay,
+give me top five smartphones under 20,000 rupees, right?
+Something like this, right?
+So you heard the query could be like smartphones
+under 20,000 rupees at Android or something like this, right?
+So it's not like we are going a semantic search
+where we are there used to search for smartphones
+and I use a filter to get as a price range
+and then maybe use a operating system as Android or iOS
+and then search my results, right?
+Rather I want to combine everything in one go
+and then search and wander API
+or the AI to return back the products
+in a particular way, right?
+So the complexity as I mentioned has increased
+and the challenge is that we also need to understand
+the requirement of the customer, right?
+So at times it could be something that
+it's a informational question that, okay,
+can you explain me how do I build roof
+or can you explain me how do I do this thing, right?
+Or express it or how do I cook or let's say Maggie?
+So this could be something where
+it's not related to particularly your product
+but it could be something related to information
+that the user is trying to get into
+or it could be something like
+how do I upgrade my phone to iPhone 17 Pro
+with my this current things, right?
+So you are looking for an upgradation
+as well as for more question and answer, right?
+So it becomes a conversation, right?
+It's not something that we can return you back
+a single list of product items
+but it's rather a two and fro conversation
+where, okay, what is your requirement
+and then we answer you in that way, right?
+So as you can see on the scale, right?
+Queries like dress and snacks are very direct queries
+which you can always serve you by the commerce
+or the vanilla product which is a vertex app or such
+but queries like find me boot for this dress
+is something that is very specific
+and I need to use the conversation for this part
+where, okay, the person uploads an image, finds out, okay
+from my personization point of view
+what are the best fit boots for this dress
+and then search and come back as a result, right?
+So on the scale of that, we decide, okay
+how the condition commerce is going to be used.
+The last part is pinning controls
+and merchandising console.
+So we have recently launched pinning controls
+so we have seen a requirement from many of the customers
+wherein you have some kind of an agreement
+with a brand saying that for this query,
+this number, this particular product should be shown
+at position.
+one, right? So earlier it was to be a case where we say that okay, it's a sponsor product
+or something which comes back on the result side, right? But then it was done outside of
+the CRS or the vertex CSR for commerce. Now we have included that part into our product
+as well where you can specify up to 10 products for a particular query at which position
+and which product you want to show so that the ranking that is being written back will
+adjust accordingly, but this positions will remain as is and it won't change, right?
+So you want this particular product to be shown at position one that will remain as it won't
+it won't change, right? This is about the pinning controls and the next thing is about the
+merchandising controls. So like there are customers who have merchants, right? So let's say we don't
+want to make an abusive use of certain controls. So let's say for me, I'm selling certain products
+and I want my products to be shown at the top, but then it may not have a business real
+business use case, right? So what we have come up with is a there will be there are two roles
+here basically or two things here where I as a merchandiser can submit my rule that can you please
+boost Reebok products at the top. Now there will be approval in process where which will say that
+okay if this store is really needed or correct and only once it's approved it starts consuming,
+right? So it's not as if like you submit a rule and it has made a change rather we have
+created now a guardrail which says that okay unless until you post or your rule is being
+accepted by the lead it won't get come into effect, right? So this is just a way to handle
+the different request that comes from merchandisers that these are the number of rules that I want
+to set in but it's all up to merchandiser lead to say that okay I can only approve this much
+and not this much, right? So we are just trying to help and make it ensuring that this more for
+process or enter rather than becomes a headache for a merchandiser lead that he has to add all
+the rules one by one, right? So this is just the roles and roles are responses what every
+uproarers or things can do. So basically a merchandising creator can create a goal or
+create a rule but then uproarer can approve the rule, right? So unless until it's approved as I
+mentioned it won't go in and once the rule is approved it starts getting served, right? So
+admin is more of a he decides that okay who are the merchandisers? Who are the uproars here?
+What kind of email notifications are required? Is it like for every control and to require a
+notification or for every new serving configs do I require notification? So it's it's more
+from that perspective.
