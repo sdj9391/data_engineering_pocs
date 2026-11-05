@@ -1,0 +1,10 @@
+.gcloudignore
+.gitignore
+.DS_Store
+.git/
+.venv/
+.env
+__pycache__/
+*.pyc
+local.db
+data/
