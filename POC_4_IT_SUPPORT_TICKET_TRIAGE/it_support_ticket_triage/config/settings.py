@@ -1,7 +1,7 @@
 import os
 
 USE_LLM = os.getenv("USE_LLM", "true").lower() == "true"
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
 DB_BACKEND = os.getenv("DB_BACKEND", "cloudsql")          # "cloudsql" or "sqlite"
 SQLITE_URL = os.getenv("SQLITE_URL", "sqlite:///local.db")
 
